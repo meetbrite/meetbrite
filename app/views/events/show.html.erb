@@ -1,0 +1,10 @@
+<h1><%= @event.title %></h1>
+<h4><%= @event.location %></h4>
+<h4><%= @event.description %></h4>
+<h4><%= @event.start %></h4>
+<h4><%= @event.end %></h4>
+
+ <!-- route not set up yet -->
+<%= button_to "Join Event", "/events/#{@event.id}/register"%>
+
+<%= button_to "Delete Event", event_path(@event), :method => "delete" %>
