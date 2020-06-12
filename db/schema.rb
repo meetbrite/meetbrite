@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_06_12_194827) do
 
   create_table "events", force: :cascade do |t|
     t.boolean "public"
-    t.boolean "active"
+    t.boolean "active", default: true
     t.string "title"
     t.text "description"
     t.string "location"

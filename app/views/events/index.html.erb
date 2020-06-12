@@ -1,0 +1,5 @@
+<% @events.each do |event| %>
+    <h1><%= link_to event.title, event_path(event) %></h1>
+    <h3><%= event.start%></h3>
+
+<% end %>
