@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
             session[:user_id] = user.id  #stores authenticated user id in a session 
             redirect_to user_path(user)
         else 
-            flash.now[:alert] = "Invalid Email or Password!"
+            flash[:alert] = "Invalid Email or Password!"
             redirect_to login_path 
         end 
     end

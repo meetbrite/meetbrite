@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user 
+    helper_method :current_user, :authenticate
 
     def current_user
         if session[:user_id]
@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     end 
 
     def authenticate 
-        session[:user_id] ? true : false 
+        if current_user 
+            true 
+        else 
+             redirect_to login_path  
+        end 
     end 
 end

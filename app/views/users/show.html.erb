@@ -1,11 +1,16 @@
-<h1>Welcome to the user show page </h1>
+<h1>Welcome <%= @user.first_name %> to your show page </h1>
 
-<% if current_user %> 
-    <%= true %>
+<% if @user.events %> 
+    <% @user.events.each do |event|%>
+        <p> <%= event.title %></p>
+    <% end %>
 <% else  %> 
-    <%= false %>
+    <p>You have no events!! Search all public events</p>
 <% end %> 
 
 <br>
+<br>
+<h3>List of messages a user is part of</h3>
 
-<%= current_user %> 
+<%= @user.events.length %> 
+
