@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Event.destroy_all 
+User.destroy_all
+
+user1 = User.create(first_name: "Bashir", last_name: "Alhanshali", email: "bashiralhanshali@yahoo.com", password: "hello", password_confirmation: "hello")
+user2 = User.create(first_name: "Elisheva", last_name: "Elbaz", email: "elisheva@elbaz.com", password: "hello", password_confirmation: "hello")
+
+
+event1 = Event.create(public: true, active: true, title: "Ice cream party", description: "This is an excellent event if you like sweets", location: "Brooklyn, NY", start: Time.new(2020,6,27,9), end: Time.new(2020,6,27,16))
+event2 = Event.create(public: true, active: true, title: "Pair Programming", description: "How to pair program effectivly", location: "New York, NY", start: Time.new(2020,6,20,13), end: Time.new(2020,6,20,14))
+event3 = Event.create(public: true, active: true, title: "Music Party 101", description: "Join us for a day filled with food and music", location: "Brooklyn, NY", start: Time.new(2020,6,21,10), end: Time.new(2020,6,21,18))
+event4 = Event.create(public: false, active: true, title: "Block Party", description: "Let the neighbors get to know each other", location: "Edison, NJ", start: Time.new(2020,7,04,11), end: Time.new(2020,6,04,16))
+event5 = Event.create(public: false, active: true, title: "Flatiron Mixer", description: "Let the students get to know each other", location: "Brooklyn, NY", start: Time.new(2020,7,10,12), end: Time.new(2020,6,10,13))
