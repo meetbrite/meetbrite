@@ -1,8 +1,8 @@
 <h1><%= @event.title %></h1>
 <h4><%= @event.location %></h4>
 <h4><%= @event.description %></h4>
-<h4><%= @event.start %></h4>
-<h4><%= @event.end %></h4>
+<h4><%= @event.start.strftime("%A - %b %d, %Y  at %I:%M %p") %></h4>
+<h4><%= @event.end.strftime("%A - %b %d, %Y  at %I:%M %p")  %></h4>
 
 
  <!-- route not set up yet -->
