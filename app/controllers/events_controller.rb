@@ -16,8 +16,8 @@ class EventsController < ApplicationController
     end
 
     def create
-        @event = Event.create(event_params)
-
+        @event = Event.create(event_params) #create an event 
+        EventUser.create(user_id: session[:user_id], event_id: @event.id, organizer: true) #creates assoication between creater(user) and event
         redirect_to event_path(@event)
     end
 

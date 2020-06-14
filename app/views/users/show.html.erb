@@ -1,5 +1,8 @@
 <h1>Welcome <%= @user.first_name %> to your show page </h1>
 
+<%=button_to "Create Event", new_event_path, :method => "get"%>
+<br>
+<h3>Events user has joined:</h3>
 <% if @user.events %> 
     <% @user.events.each do |event|%>
         <p> <%=link_to event.title, event_path(event) %></p>
