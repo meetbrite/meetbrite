@@ -12,5 +12,17 @@
 <br>
 <h3>List of messages a user is part of</h3>
 
-<%= @user.events.length %> 
+<h5>Group Messages:</h5>
 
+<% @user.events.each do |event| %> 
+    <p><%= event.title %> Messages</p>
+<% end %>
+
+<br>
+
+<h5>Direct Messages:</h5>
+
+
+<% @user.people_messaged.each do |msg| %> 
+    <p><%= msg.sender.first_name %> Messages</p>
+<% end %>
