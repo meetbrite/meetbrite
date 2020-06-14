@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+    before_action :authenticate, :except => [:index, :show] #unregistered users can only see index of the events route
 
     def index
         @events = Event.where(public: true)

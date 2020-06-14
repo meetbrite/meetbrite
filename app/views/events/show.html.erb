@@ -13,9 +13,18 @@
         <%= button_to "Delete Event", event_path(@event), :method => "delete" %>
         <%= button_to "Update Event", edit_event_path(@event), :method => "get" %>
     <% else %>
-        <%= button_to "Leave Event", "add/path/here/to/delete/event-user" %>
+        <%= button_to "Leave Event", "/events/#{@event.id}/unregister" %>
     <% end %>
+<% else %>
+    <p>You must be logged in to join this event</p>
+    <%= button_to "Join Event", "/login", :method => "get"%>
 <% end %>
+
+
+
+<br>
+<br>
+<p>Possibly embed a map here to show event location</p>
 
 
 
