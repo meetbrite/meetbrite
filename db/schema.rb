@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2020_06_12_194827) do
 
   create_table "direct_messages", force: :cascade do |t|
     t.integer "sender_id"
-    t.integer "reciever_id"
+    t.integer "receiver_id"
     t.text "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2020_06_12_194827) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.boolean "public"
+    t.boolean "public", default: true
     t.boolean "active", default: true
     t.string "title"
     t.text "description"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2020_06_12_194827) do
     t.string "first_name"
     t.string "last_name"
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

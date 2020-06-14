@@ -1,7 +1,7 @@
 class CreateEvents < ActiveRecord::Migration[6.0]
   def change
     create_table :events do |t|
-      t.boolean :public
+      t.boolean :public, default: true 
       t.boolean :active, default: true
       t.string :title
       t.text :description
