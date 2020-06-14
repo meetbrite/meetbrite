@@ -8,12 +8,12 @@
  <!-- route not set up yet -->
  <% if @user %>
     <% if !@joined %>
-        <%= button_to "Join Event", "/events/#{@event.id}/register"%>
+        <%= button_to "Join Event", "/events/#{@event.id}/register", :method => "get"%>
     <% elsif @joined && @organizer %> 
         <%= button_to "Delete Event", event_path(@event), :method => "delete" %>
         <%= button_to "Update Event", edit_event_path(@event), :method => "get" %>
     <% else %>
-        <%= button_to "Leave Event", "/events/#{@event.id}/unregister" %>
+        <%= button_to "Leave Event", "/events/#{@event.id}/unregister", :method => "get" %>
     <% end %>
 <% else %>
     <p>You must be logged in to join this event</p>
