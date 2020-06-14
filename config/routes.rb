@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
 
-  get '/users/:first_id/direct_message/:second_id', to: 'direct_messages#display_messages', as: 'display_direct_message'
+  get '/users/:first_id/direct_message/:second_id', to: 'direct_messages#display_messages', as: 'display_direct_messages'
+  get '/users/:user_id/group_message/:event_id', to: 'group_messages#display_messages', as: 'display_group_messages'
 
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'

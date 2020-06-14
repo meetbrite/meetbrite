@@ -15,7 +15,7 @@
 <h5>Group Messages:</h5>
 
 <% @user.events.each do |event| %> 
-    <p><%= event.title %> Messages</p>
+    <p><%= link_to event.title, "#{@user.id}/group_message/#{event.id}" %> </p>
 <% end %>
 
 <br>

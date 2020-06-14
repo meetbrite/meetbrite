@@ -1,0 +1,11 @@
+<h1>Event: <%= @event.title %> </h1>
+<br>
+<h4>Conversation:</h4>
+<br>
+
+
+<% if @messages %>
+    <% @messages.each do |message| %>
+        <p><%= message.user.first_name%> : <%= message.message %></p>
+    <% end %>
+<% end %>
