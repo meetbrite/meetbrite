@@ -4,7 +4,20 @@
 <h4><%= @event.start %></h4>
 <h4><%= @event.end %></h4>
 
- <!-- route not set up yet -->
-<%= button_to "Join Event", "/events/#{@event.id}/register"%>
 
-<%= button_to "Delete Event", event_path(@event), :method => "delete" %>
+ <!-- route not set up yet -->
+ <% if @user %>
+    <% if !@joined %>
+        <%= button_to "Join Event", "/events/#{@event.id}/register"%>
+    <% elsif @joined && @organizer %> 
+        <%= button_to "Delete Event", event_path(@event), :method => "delete" %>
+        <%= button_to "Update Event", edit_event_path(@event), :method => "get" %>
+    <% else %>
+        <%= button_to "Leave Event", "add/path/here/to/delete/event-user" %>
+    <% end %>
+<% end %>
+
+
+
+
+

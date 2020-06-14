@@ -6,6 +6,9 @@ class EventsController < ApplicationController
 
     def show
         @event = Event.find(params[:id])
+        @user = current_user 
+        @joined = @event.is_user_joined(@user) #returns true if user has joined event
+        @organizer = @event.is_user_organizer(@user) #returns true if user is an organzier
     end
 
     def new

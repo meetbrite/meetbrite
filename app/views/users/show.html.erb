@@ -2,7 +2,7 @@
 
 <% if @user.events %> 
     <% @user.events.each do |event|%>
-        <p> <%= event.title %></p>
+        <p> <%=link_to event.title, event_path(event) %></p>
     <% end %>
 <% else  %> 
     <p>You have no events!! Search all public events</p>
