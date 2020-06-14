@@ -1,0 +1,16 @@
+<h1>Welcome <%= @user.first_name %> to your show page </h1>
+
+<% if @user.events %> 
+    <% @user.events.each do |event|%>
+        <p> <%= event.title %></p>
+    <% end %>
+<% else  %> 
+    <p>You have no events!! Search all public events</p>
+<% end %> 
+
+<br>
+<br>
+<h3>List of messages a user is part of</h3>
+
+<%= @user.events.length %> 
+
