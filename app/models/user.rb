@@ -13,10 +13,11 @@ class User < ApplicationRecord
     validates :email, presence: true, uniqueness: true
 
 
+    #this may better be in DirectMessage 
     def people_messaged
         #DirectMessage.where(sender_id: self.id).or(DirectMessage.where(reciever_id: self.id)).distinct
         #DirectMessage.where(reciever_id: self.id).distinct
-        DirectMessage.all.select {|m| m.reciever_id == self.id}.uniq {|i| i.sender_id} 
+        DirectMessage.all.select {|m| m.reciever_id == self.id}.uniq {|i| i.sender_id} #retuns a list of direct messages, unique by sender_id 
     end 
 
 end

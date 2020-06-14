@@ -24,5 +24,5 @@
 
 
 <% @user.people_messaged.each do |msg| %> 
-    <p><%= msg.sender.first_name %> Messages</p>
+    <p><%= link_to msg.sender.first_name, "#{@user.id}/direct_message/#{msg.sender_id}" %> </p>
 <% end %>
