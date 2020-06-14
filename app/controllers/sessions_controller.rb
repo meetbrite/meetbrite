@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
 
+    #displalys login form 
     def new 
     end 
 

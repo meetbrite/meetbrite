@@ -1,0 +1,7 @@
+<h1>Messaging: <%= @receiver.first_name %> </h1>
+<br>
+<h4>Conversation:</h4>
+<br>
+<% @messages.each do |message| %>
+    <p><%= message.sender.first_name%> : <%= message.message %></p>
+<% end %>

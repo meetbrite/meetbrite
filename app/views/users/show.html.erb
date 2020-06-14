@@ -1,8 +1,11 @@
 <h1>Welcome <%= @user.first_name %> to your show page </h1>
 
+<%=button_to "Create Event", new_event_path, :method => "get"%>
+<br>
+<h3>Events user has joined:</h3>
 <% if @user.events %> 
     <% @user.events.each do |event|%>
-        <p> <%= event.title %></p>
+        <p> <%=link_to event.title, event_path(event) %></p>
     <% end %>
 <% else  %> 
     <p>You have no events!! Search all public events</p>
@@ -12,5 +15,17 @@
 <br>
 <h3>List of messages a user is part of</h3>
 
-<%= @user.events.length %> 
+<h5>Group Messages:</h5>
 
+<% @user.events.each do |event| %> 
+    <p><%= link_to event.title, "#{@user.id}/group_message/#{event.id}" %> </p>
+<% end %>
+
+<br>
+
+<h5>Direct Messages:</h5>
+
+
+<% @user.people_messaged.each do |msg| %> 
+    <p><%= link_to msg.sender.first_name, "#{@user.id}/direct_message/#{msg.sender_id}" %> </p>
+<% end %>
