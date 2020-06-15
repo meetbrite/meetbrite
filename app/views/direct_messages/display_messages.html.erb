@@ -2,14 +2,19 @@
 <br>
 <h4>Conversation:</h4>
 <br>
-<% @messages.each do |message| %>
-    <p><%= message.sender.first_name%> : <%= message.message %></p>
-<% end %>
 
+<% if @messages %>
+<div id="messages">
+<% @messages.each do |message| %>
+     <%= render "direct_messages/message", message: message %>
+<% end %>
+</div>
+<% end %>
 
 
 <%= form_tag direct_messages_path  do %>
     <%= text_field_tag :message %>
     <%= hidden_field_tag "receiver_id", params[:second_id] %>
-    <%= submit_tag "Send" %>
+    <%= hidden_field_tag "direct_id", @direct_id %>
+    <%= submit_tag "Send", data: { disable_with: false } %>
 <% end %>
