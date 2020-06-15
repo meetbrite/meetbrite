@@ -19,7 +19,7 @@
         <% if !@joined %>
             <%= button_to "Join Event", "/events/#{@event.id}/register", :method => "get", class: "btn btn-outline-info"%>
         <% elsif @joined && @organizer %> 
-            <div class="row">
+        <div class="row">
             <div class="col-xs-4 ">
                 <%= button_to "Event Chat", "/users/#{current_user.id}/group_message/#{@event.id}", :method => "get", class: "btn btn-outline-success"%>
             </div>
@@ -31,6 +31,7 @@
             </div>
         </div>
         <% else %>
+
             <div class="row">
                 <div class="col-xs-4 ">
                     <%= button_to "Event Chat", "/users/#{current_user.id}/group_message/#{@event.id}", :method => "get", class: "btn btn-outline-success"%>
