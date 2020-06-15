@@ -3,6 +3,8 @@ class EventsController < ApplicationController
 
     def index
         @events = Event.where(public: true)
+        @user = current_user
+        # @joined = @event.is_user_joined(@user) #returns true if user has joined event
     end
 
     def show

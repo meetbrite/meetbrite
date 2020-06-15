@@ -1,15 +1,18 @@
+<div class="container">
 <h1>Login</h1>
 
 <p> <%= flash[:alert] %> </p>
-
-
-<%= form_tag sessions_path do |form| %>
-  
-    <%= label_tag :email %>
-    <%= text_field_tag :email %>
-    <br>
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-    <br>
-    <%= submit_tag "Login" %>
+<%= form_for(:session, url: "/sessions") do |f| %>
+    <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control"  %>
+    </div>
+    <%= f.submit "Login", :class => "btn btn-primary" %>
 <% end %>
+<br>
+<%= link_to "Don't have an account? Sign up here", "/signup" %>
+</div>
