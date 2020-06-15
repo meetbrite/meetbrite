@@ -5,3 +5,11 @@
 <% @messages.each do |message| %>
     <p><%= message.sender.first_name%> : <%= message.message %></p>
 <% end %>
+
+
+
+<%= form_tag direct_messages_path  do %>
+    <%= text_field_tag :message %>
+    <%= hidden_field_tag "receiver_id", params[:second_id] %>
+    <%= submit_tag "Send" %>
+<% end %>
