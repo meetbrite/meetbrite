@@ -1,24 +1,38 @@
-<%= form_for @event do |f| %>
-    <%= f.label :title  %>
-    <%= f.text_field :title  %>
+<div class="container">
+    <%= form_for @event do |f| %>
+        <div class="form-group">
 
-    <%= f.label :description  %>
-    <%= f.text_area :description  %>
+            <%= f.label :title  %>
+            <%= f.text_field :title, class: "form-control"  %>
+        </div>
 
-    <%= f.label :location  %>
-    <%= f.text_field :location  %>
+        <div class="form-group">
+            <%= f.label :description  %>
+            <%= f.text_area :description, class: "form-control"  %>
+        </div>
+        <div class="form-group">
+            <%= f.label :location  %>
+            <%= f.text_field :location, class: "form-control"  %>
+        </div>
+        <div class="form-group">
+            <%= f.label :start  %>
+            <%= f.datetime_select :start, class: "form-control"  %>
+        </div>
 
-    <%= f.label :start  %>
-    <%= f.datetime_select :start  %>
+        <div class="form-group">
+            <%= f.label :end  %>
+            <%= f.datetime_select :end, class: "form-control"  %>
+        <div>
 
-    <%= f.label :end  %>
-    <%= f.datetime_select :end  %>
+        <div class="form-check">
+            <%= f.radio_button :public, true, :checked => true, class: "form-check-input" %>
+            <%= f.label :public, "Public", class: "form-check-label" %>
+        </div>
+        <div class="form-check">
+            <%= f.radio_button :public, false, class: "form-check-input" %>
+            <%= f.label :public, "Private", class: "form-check-label" %>
+        </div>
+        <%= f.submit %>
 
-    <%= f.radio_button(:public, true, :checked => true) %>
-    <%= f.label(:public, "Public") %>
-    <%= f.radio_button(:public, false) %>
-    <%= f.label(:public, "Private") %>
-
-    <%= f.submit %>
-
-<% end  %>
+    <% end  %>
+    </div>

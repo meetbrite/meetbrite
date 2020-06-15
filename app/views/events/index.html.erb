@@ -1,5 +1,30 @@
-<% @events.each do |event| %>
-    <h1><%= link_to event.title, event_path(event) %></h1>
-    <h3><%= event.start.strftime("%A - %b %d, %Y  at %I:%M %p") %></h3>
+<div class="m-4">
+<div class="row row-cols-1 row-cols-md-3">
+    <% @events.each do |event| %>
+<div class="col mb-4">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title"><%= link_to event.title, event_path(event) %></h1>
+      <p class="card-text"><%= event.description %></p>
+      <p class="card-text"> <%= event.start.strftime("%A - %b %d, %Y  at %I:%M %p") %></p>
+
+      <% if event.is_user_joined(@user) %>
+        <p class="text-success text-center">Already joined!</p>
+      <% else %>
+      <div class="text-center">
+        <%= button_to "Join Event", "/events/#{event.id}/register", :method => "get", class: "btn btn-primary"%>
+      </div>
+      <% end%>
+    </div>
+  </div>
+</div>
+
 
 <% end %>
+</div>
+
+
+<% if current_user %>
+<%= button_to "Create Event", new_event_path, :method => "get"%>
+<% end %>
+</div>

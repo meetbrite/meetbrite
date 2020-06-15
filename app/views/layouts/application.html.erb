@@ -10,13 +10,20 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-light bg-light">
+  <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="/">Meetbrite</a>
-  <% if session[:user] %>
-    <span class="navbar-text"><a href="/logout">Logout</a></span>
+    
+    <div class="ml-auto">
+      <span class="navbar-text nav-item mr-3"><a href="/events"> Events  </a></span>
+
+  <% if current_user %>
+      <span class="navbar-text nav-item mr-3"><a href="/users/<%= current_user.id %>"> Profile  </a></span>
+      <span class="navbar-text nav-item"><a href="/logout">Logout</a></span>
     <% else %>
-    <span class="navbar-text"><a href="/login"> Login  </a></span>
+      <span class="navbar-text nav-item mr-3"><a href="/signup"> Sign Up  </a></span>
+      <span class="navbar-text nav-item"><a href="/login"> Login  </a></span>
   <% end%>
+  </div>
 </nav>
     <%= yield %>
   </body>

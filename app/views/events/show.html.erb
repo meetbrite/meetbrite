@@ -1,21 +1,33 @@
-<div class="container mt-5">
-    <h1><%= @event.title %></h1>
-    <h4><%= @event.location %></h4>
+
+
+<div class="jumbotron container mt-5 pl-5">
+    <h1 class="display-3"><%= @event.title %></h1>
+    <h4 class="lead"><%= @event.location %></h4>
     <h4><%= @event.description %></h4>
-    <h4><%= @event.start.strftime("%A - %b %d, %Y  at %I:%M %p") %></h4>
-    <h4><%= @event.end.strftime("%A - %b %d, %Y  at %I:%M %p")  %></h4>
+    <h4 class="lead"><%= @event.start.strftime("%A - %b %d, %Y  at %I:%M %p") %></h4>
+    <h4 class="lead"><%= @event.end.strftime("%A - %b %d, %Y  at %I:%M %p")  %></h4>
+    <br>
 
 
-
-    <!-- route not set up yet -->
     <% if @user %>
         <% if !@joined %>
             <%= button_to "Join Event", "/events/#{@event.id}/register", :method => "get"%>
         <% elsif @joined && @organizer %> 
-            <%= button_to "Delete Event", event_path(@event), :method => "delete" %>
-            <%= button_to "Update Event", edit_event_path(@event), :method => "get" %>
+            <div class="row">
+            <div class="col-xs-4 ">
+                <%= button_to "Event Chat", "/users/#{current_user.id}/group_message/#{@event.id}", :method => "get", class: "btn btn-outline-success"%>
+            </div>
+            <div class="col-xs-4 ml-5">
+                <%= button_to "Delete Event", event_path(@event), :method => "delete", class: "btn btn-outline-danger"%>
+            </div>
+            <div class="col-xs-4 ml-5 ">
+                <%= button_to "Update Event", edit_event_path(@event), :method => "get", class: "btn btn-outline-secondary" %>
+            </div>
+        </div>
         <% else %>
-            <%= button_to "Leave Event", "/events/#{@event.id}/unregister", :method => "get" %>
+            <%= button_to "Event Chat", "/users/#{current_user.id}/group_message/#{@event.id}", :method => "get", class: "btn btn-outline-success"%>
+            <%= button_to "Leave Event", "/events/#{@event.id}/unregister", :method => "get", class: "btn btn-outline-danger"%>
+
         <% end %>
     <% else %>
         <p>You must be logged in to join this event</p>
