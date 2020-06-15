@@ -17,5 +17,5 @@
 <%= form_tag group_messages_path  do %>
     <%= text_field_tag :message %>
     <%= hidden_field_tag "event_id", params[:event_id] %>
-    <%= submit_tag "Send" %>
+    <%= submit_tag "Send", data: { disable_with: false }%>
 <% end %>
