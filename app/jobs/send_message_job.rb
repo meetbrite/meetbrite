@@ -10,4 +10,7 @@ class SendMessageJob < ApplicationJob
 
     ActionCable.server.broadcast "group_channel_#{message.event_id}", html: html
   end
+
+
+  
 end

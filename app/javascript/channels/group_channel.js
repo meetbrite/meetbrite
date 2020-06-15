@@ -2,7 +2,7 @@ import consumer from "./consumer"
 
 document.addEventListener('turbolinks:load', () => {
   const event_id = document.getElementById('event_id').value 
-  console.log(event_id);
+  
   consumer.subscriptions.create({channel: "GroupChannel", event_id: event_id}, {
     connected() {
       // Called when the subscription is ready for use on the server
