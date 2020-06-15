@@ -33,7 +33,12 @@ ActiveRecord::Schema.define(version: 2020_06_12_194827) do
     t.boolean "active", default: true
     t.string "title"
     t.text "description"
-    t.string "location"
+    t.boolean "virtual", default: false
+    t.string "location_name"
+    t.string "street_address"
+    t.string "city"
+    t.string "state"
+    t.string "zipcode"
     t.datetime "start"
     t.datetime "end"
     t.datetime "created_at", precision: 6, null: false

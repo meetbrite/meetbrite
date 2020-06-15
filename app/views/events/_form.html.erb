@@ -1,0 +1,89 @@
+<div class="container">
+    <%= form_for @event do |f| %>
+        <div class="form-group row">
+            <div class="col-lg-4">
+
+                <%= f.label :title  %>
+                <%= f.text_field :title, class: "form-control"  %>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-4">
+
+                <%= f.label :description  %>
+                <%= f.text_area :description, class: "form-control"  %>
+            </div>
+        </div>
+
+        <div class="form-check">
+
+            <%= f.radio_button :virtual, false, class: "form-check-input" %>
+            <%= f.label :virtual, "In-Person", class: "form-check-label" %>
+        </div>
+        <div class="form-check">
+            <%= f.radio_button :virtual, true, class: "form-check-input" %>
+            <%= f.label :virtual, "Virtual", class: "form-check-label" %>
+        </div>
+        <br>
+
+        <div class="form-group row">
+            <div class="col-lg-4">
+
+                <%= f.label :street_address  %>
+                <%= f.text_field :street_address, class: "form-control"  %>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-lg-4">
+
+                <%= f.label :city  %>
+                <%= f.text_field :city, class: "form-control"  %>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-4">
+
+                <%= f.label :state  %>
+                <%= f.text_field :state, class: "form-control"  %>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-4">
+
+                <%= f.label :zipcode  %>
+                <%= f.text_field :zipcode, class: "form-control"  %>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+
+            <%= f.label :start  %>
+            <%= f.datetime_select :start, class: "form-control"  %>
+        </div>
+
+        <div class="form-group ">
+
+            <%= f.label :end  %>
+            <%= f.datetime_select :end, class: "form-control"  %>
+        </div>
+
+        <div class="form-check">
+            <%= f.radio_button :public, true, :checked => true, class: "form-check-input" %>
+            <%= f.label :public, "Public", class: "form-check-label" %>
+        </div>
+        <div class="form-check">
+            <%= f.radio_button :public, false, class: "form-check-input" %>
+            <%= f.label :public, "Private", class: "form-check-label" %>
+        </div>
+        <br>
+        <%= f.submit class: "btn btn-primary mb-3"%>
+        <br>
+
+    <% end  %>
+    </div>

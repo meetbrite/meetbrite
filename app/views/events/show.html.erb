@@ -2,7 +2,13 @@
 
 <div class="jumbotron container mt-5 pl-5">
     <h1 class="display-3"><%= @event.title %></h1>
-    <h4 class="lead"><%= @event.location %></h4>
+    <% if @event.virtual %>
+        <h4 class="lead text-info">This event is virtual</h4>
+        <% else %>
+        <h4 class="lead"><%= "#{@event.street_address}"%></h4>
+        <h4 class="lead"><%= "#{@event.city}, #{@event.state} #{@event.zipcode}"%></h4>
+
+    <% end %>
     <h4><%= @event.description %></h4>
     <h4 class="lead"><%= @event.start.strftime("%A - %b %d, %Y  at %I:%M %p") %></h4>
     <h4 class="lead"><%= @event.end.strftime("%A - %b %d, %Y  at %I:%M %p")  %></h4>
@@ -11,7 +17,7 @@
 
     <% if @user %>
         <% if !@joined %>
-            <%= button_to "Join Event", "/events/#{@event.id}/register", :method => "get"%>
+            <%= button_to "Join Event", "/events/#{@event.id}/register", :method => "get", class: "btn btn-outline-info"%>
         <% elsif @joined && @organizer %> 
         <div class="row">
             <div class="col-xs-4 ">
@@ -25,18 +31,20 @@
             </div>
         </div>
         <% else %>
-        <div class="row">
-            <div class="col-xs-4 ">
-                <%= button_to "Event Chat", "/users/#{current_user.id}/group_message/#{@event.id}", :method => "get", class: "btn btn-outline-success"%>
+
+            <div class="row">
+                <div class="col-xs-4 ">
+                    <%= button_to "Event Chat", "/users/#{current_user.id}/group_message/#{@event.id}", :method => "get", class: "btn btn-outline-success"%>
+                </div>
+                <div class="col-xs-4 ml-5">
+                    <%= button_to "Leave Event", "/events/#{@event.id}/unregister", :method => "get", class: "btn btn-outline-danger"%>
+                </div>
             </div>
-            <div class="col-xs-4 ml-5">
-             <%= button_to "Leave Event", "/events/#{@event.id}/unregister", :method => "get", class: "btn btn-outline-danger"%>
-            </div>
-        </div>
+
         <% end %>
     <% else %>
         <p>You must be logged in to join this event</p>
-        <%= button_to "Join Event", "/login", :method => "get"%>
+        <%= button_to "Login", "/login", :method => "get", class: "btn btn-info"%>
     <% end %>
 
 
