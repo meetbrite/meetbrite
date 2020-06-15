@@ -5,7 +5,7 @@
 
 
 <% if @messages %>
- <div id="messages">
+ <div id="messages", event_id="<%= @event.id %>">
     <% @messages.each do |message| %>
         <%= render "group_messages/message", message: message %>
     <% end %>
