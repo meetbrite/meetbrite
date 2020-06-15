@@ -10,4 +10,11 @@ class GroupMessagesController < ApplicationController
             redirect_back(fallback_location: user_path(@user))
         end 
     end 
+
+    def create
+        @message = GroupMessage.create(user_id: session[:user_id], event_id: params[:event_id], message: params[:message])
+        #redirect_to request.referrer 
+        # ActionCable.server.broadcast "group_channel_#{@message.event_id}", message: @message.message 
+        SendMessageJob.perform_later(@message)
+    end 
 end

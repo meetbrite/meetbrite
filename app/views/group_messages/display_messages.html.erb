@@ -5,7 +5,17 @@
 
 
 <% if @messages %>
+ <div id="messages", event_id="<%= @event.id %>">
     <% @messages.each do |message| %>
-        <p><%= message.user.first_name%> : <%= message.message %></p>
+        <%= render "group_messages/message", message: message %>
     <% end %>
+ </div>
+<% end %>
+
+
+
+<%= form_tag group_messages_path  do %>
+    <%= text_field_tag :message %>
+    <%= hidden_field_tag "event_id", params[:event_id] %>
+    <%= submit_tag "Send", data: { disable_with: false }%>
 <% end %>
