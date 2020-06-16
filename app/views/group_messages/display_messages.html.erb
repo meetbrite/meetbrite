@@ -39,10 +39,10 @@
 <!-- -->
     <% if @organizer %>
     <%= form_for( :events, as: :email, url: "/events/#{@event.id}/organizer/add_member", method: :post, html: { class: "d-inline-flex p-2 bd-highlight"})  do |f| %>
-            <div class="form-group">
+            <div class="form-group d-flex">
                 <%= f.text_field :email, placeholder: "User Email", class: "form-control" %>
-            </div>
-            <%= f.submit "Add", :class => "btn btn-primary" %>
+                <%= f.submit "Add", :class => "btn btn-primary ml-2", data: { disable_with: false }%>
+             </div>
         <% end %>
         <% if flash[:error] %>
             <p style="color: red"><%= flash[:error] %></p>
