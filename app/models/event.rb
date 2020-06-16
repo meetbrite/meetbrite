@@ -24,4 +24,10 @@ class Event < ApplicationRecord
         end 
     end 
 
+    #return members of an event 
+    def members 
+        self.users 
+    end 
+
+
 end
