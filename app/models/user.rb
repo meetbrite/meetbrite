@@ -20,4 +20,13 @@ class User < ApplicationRecord
         DirectMessage.all.select {|m| m.receiver_id == self.id}.uniq {|i| i.sender_id} #retuns a list of direct messages, unique by sender_id 
     end 
 
+
+        #return all events of an organizer 
+    def organized_events 
+        event_users = EventUser.where(user_id: self.id, organizer: true)
+        event_users.map do |event_user|
+            event_user.event
+        end 
+    end 
+
 end

@@ -27,14 +27,27 @@
 
 
     <div class="card column event-members"  style="width: 20rem;">
-    <div class="card-header">
-        Members : <%= @members.length %>
-    </div>
-    <ul class="list-group list-group-flush">
-        <% @members.each do |member| %>
-            <li class="list-group-item"><a href="/users/<%=@user.id%>/direct_message/<%=member.id %>"><%= member.first_name%> <%=member.last_name %> </a></li>
+        <div class="card-header">
+            Members : <%= @members.length %>
+        </div>
+        <ul class="list-group list-group-flush">
+            <% @members.each do |member| %>
+                <li class="list-group-item"><a href="/users/<%=@user.id%>/direct_message/<%=member.id %>"><%= member.first_name%> <%=member.last_name %> </a></li>
+            <% end %>
+        </ul>
+        
+<!-- -->
+    <% if @organizer %>
+    <%= form_for( :events, as: :email, url: "/events/#{@event.id}/organizer/add_member", method: :post, html: { class: "d-inline-flex p-2 bd-highlight"})  do |f| %>
+            <div class="form-group">
+                <%= f.text_field :email, placeholder: "User Email", class: "form-control" %>
+            </div>
+            <%= f.submit "Add", :class => "btn btn-primary" %>
         <% end %>
-    </ul>
+        <% if flash[:error] %>
+            <p style="color: red"><%= flash[:error] %></p>
+        <% end %>
+    <% end %>
     </div>
     </div>
 </div>

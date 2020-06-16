@@ -4,7 +4,6 @@ class EventsController < ApplicationController
     def index
         @events = Event.where(public: true)
         @user = current_user
-        # @joined = @event.is_user_joined(@user) #returns true if user has joined event
     end
 
     def show
@@ -12,6 +11,12 @@ class EventsController < ApplicationController
         @user = current_user 
         @joined = @event.is_user_joined(@user) #returns true if user has joined event
         @organizer = @event.is_user_organizer(@user) #returns true if user is an organzier
+
+   #if event is private, restrict access to organizer and enrolled users only 
+   
+        if !@event.public && !@organizer && !@joined  
+            redirect_back(fallback_location: events_path)
+        end 
     end
 
     def new
@@ -69,6 +74,29 @@ class EventsController < ApplicationController
       
        render :index 
     end 
+
+
+    def organizer
+        @user = current_user
+        @events = @user.organized_events 
+    end 
+
+    #Lets user join an event 
+    def add_member 
+        event = Event.find(params[:event_id])  #is it necessary to find the event? can't we just use the id from params
+        user = User.find_by(email: params[:events][:email])
+        if user  
+            if !event.is_user_joined(user)
+                EventUser.create(user_id: user.id, event_id: event.id, organizer: false)
+                redirect_back(fallback_location: user_path(session[:user_id]))
+            else 
+                flash[:error] = "User already joined!"
+            end 
+        else 
+            flash[:error] = "User doesn't exist "
+            redirect_back(fallback_location: user_path(session[:user_id]))
+        end 
+    end
 
     private
 
