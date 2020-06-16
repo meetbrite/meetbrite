@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
+    has_many :event_user #singularized 
     has_many :users, through: :event_user
-    has_many :event_users
     has_many :group_messages
 
     #returns true if user has already joined the event 
