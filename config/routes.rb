@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'events#index'
+
   get '/events/search', to: 'events#search'
 
   resources :group_messages
