@@ -57,13 +57,13 @@ class EventsController < ApplicationController
     end
 
     def search 
-       if params[:events][:name] == ""
+       if params[:events][:attr] == ""
             @events = Event.where(public: true)
             @user = current_user
        else 
             #@events = Event.where("title LIKE :title AND public  :public", { title: "%#{params[:events][:name]}%", public: "%#{true}%"  })
-            @events = Event.where("title LIKE ?", "%#{params[:events][:name]}%") # How can we add an additional condition to return public events only 
             #@events = Event.where("title LIKE ? AND public LIKE ?", "%#{params[:events][:name]}%", "true" )
+            @events = Event.where("title LIKE ?", "%#{params[:events][:attr]}%") # How can we add an additional condition to return public events only 
             @user = current_user
        end 
       
