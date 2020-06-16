@@ -3,6 +3,13 @@ class Event < ApplicationRecord
     has_many :event_users
     has_many :group_messages
 
+    validates :title, presence: true
+    validates :description, presence: true
+    validates :city, presence: { message: "is required for in-person event" }, unless: :virtual? 
+    validates :state, presence: { message: "is required for in-person event" }, unless: :virtual?
+    validates :start, presence: true
+    validates :end, presence: true
+
     #returns true if user has already joined the event 
     def is_user_joined(user)
         if user 
