@@ -1,36 +1,36 @@
-<div class="container-fluid">
-<h1>Event: <%= @event.title %> </h1>
+<div class="container">
+<h1 class="text-center">Group Chat: <%= @event.title %> </h1>
 <br>
 <br>
 
-<div class="d-flex justify-content-between">
-    <div class="column">
-        <h4>Conversation:</h4>
-        <br>
+<div class="row d-flex justify-content-between">
+    <div class="column col-md-8">
         <!-- display messages -->
-        <div class="group-message">
-        <% if @messages %>
-        <div id="messages", class="ml-2 mt-2", event_id="<%= @event.id %>">
-            <% @messages.each do |message| %>
-                <%= render "group_messages/message", message: message %>
-            <% end %>
-        </div>
-        <% end %>
-        <!-- display message input box -->
-        <div class="ml-2" style="position: fixed, margin-bottom: 0">
-        <%= form_tag group_messages_path  do %>
-            <div class="form-group d-flex mr-2 ">
-                <%= text_field_tag :message, "", class: 'form-control'%>
-                <%= hidden_field_tag "event_id", params[:event_id] %>
-                <%= submit_tag "Send", class: "btn btn-primary ml-2", data: { disable_with: false }%>
+        <div class="group-message" id="message-scroll-bottom">
+        <div class="added">
+            <% if @messages %>
+            <div id="messages", class="ml-2 mt-2 ", event_id="<%= @event.id %>">
+                    <% @messages.each do |message| %>
+                        <%= render "group_messages/message", message: message %>
+                    <% end %>
             </div>
-        <% end %>
-        </div>
+             <% end %>
+            <!-- display message input box -->
+            <div class="ml-2 message-input" >
+            <%= form_tag group_messages_path  do %>
+                <div class="form-group d-flex mr-2 ">
+                    <%= text_field_tag :message, nil,  placeholder: 'Type message here...', class: 'form-control'%>
+                    <%= hidden_field_tag "event_id", params[:event_id] %>
+                    <%= submit_tag "Send", class: "btn btn-primary ml-2", data: { disable_with: false }%>
+                </div>
+            <% end %>
+            </div>
+        </div> <!-- added -->
         </div>
     </div>
 
 
-    <div class="card event-members"  style="width: 20rem;">
+    <div class="card column col-md-4 event-members">
         <div class="card-header">
             Members : <%= @members.length %>
         </div>
@@ -39,19 +39,21 @@
                 <li class="list-group-item"><a href="/users/<%=@user.id%>/direct_message/<%=member.id %>"><%= member.first_name%> <%=member.last_name %> </a></li>
             <% end %>
         </ul>
-    </div>
+
 <!-- -->
-    <% if @organizer %>
-    <%= form_for( :events, as: :email, url: "/events/#{@event.id}/organizer/add_member", method: :post, html: { class: "d-inline-flex p-2 bd-highlight"})  do |f| %>
-            <div class="form-group d-flex justify-content-center">
-                <%= f.text_field :email, placeholder: "User Email", class: "form-control" %>
-                <%= f.submit "Add", :class => "btn btn-primary ml-2", data: { disable_with: false }%>
-             </div>
-        <% end %>
-        <% if flash[:error] %>
-            <p style="color: red" class="text-center"><%= flash[:error] %></p>
-        <% end %>
-    <% end %>
+        <% if @organizer %>
+            <%= form_for( :events, as: :email, url: "/events/#{@event.id}/organizer/add_member", method: :post, html: { class: "d-inline-flex p-2 bd-highlight"})  do |f| %>
+                    <div class="form-group d-flex justify-content-center">
+                        <%= f.text_field :email, placeholder: "User Email", class: "form-control" %>
+                        <%= f.submit "Add", :class => "btn btn-primary ml-2", data: { disable_with: false }%>
+                    </div>
+                <% end %>
+                <% if flash[:error] %>
+                    <p style="color: red" class="text-center"><%= flash[:error] %></p>
+                <% end %>
+            <% end %>
     </div>
     </div>
 </div>
+
+<%= javascript_pack_tag 'message_scroll' %>
