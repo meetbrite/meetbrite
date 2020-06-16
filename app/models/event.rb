@@ -9,6 +9,10 @@ class Event < ApplicationRecord
     validates :state, presence: { message: "is required for in-person event" }, unless: :virtual?
     validates :start, presence: true
     validates :end, presence: true
+    validate :end_time_later_than_start
+    validate :start_time_must_be_in_future
+    # validates :start, numericality: {greater_than: DateTime.now}
+
 
     #returns true if user has already joined the event 
     def is_user_joined(user)
@@ -30,5 +34,19 @@ class Event < ApplicationRecord
             false 
         end 
     end 
+
+    def end_time_later_than_start
+        if self.start >= self.end
+            self.errors.add(:start, "date/time must be before End date/time")
+        end
+    end
+
+    # need to fix timezones - DateTime.now uses EST zone
+    #  but the db store in UTC 
+    def start_time_must_be_in_future
+        if self.start <= DateTime.now - 4.hours # to account for the timezone issue
+            self.errors.add(:event,  "must be in the future")
+        end
+    end
 
 end
