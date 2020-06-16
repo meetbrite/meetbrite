@@ -3,8 +3,10 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .event-members {
-    max-height: 50vh;
+    
     overflow-y: scroll;
+    height: fit-content;
+    max-height: 50vh;
 }
 
 .group-message {
