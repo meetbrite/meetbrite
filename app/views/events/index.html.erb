@@ -3,15 +3,22 @@
     <%= f.text_field :attr, placeholder: "Search", class: "form-control mr-sm-2"  %>
     <%= f.submit "Search", class: "btn btn-outline-success my-2 my-sm-0" %>
  <% end %>
+  <% if current_user %>
+  <div class = "mt-2">
+    <%= button_to "Create Event", new_event_path, class: "btn btn-outline-dark ", :method => "get"%>
+  </div>
+  <% end %>
  </div>
+
+
 <div class="m-4">
 <div class="row row-cols-1 row-cols-md-3">
     <% @events.each do |event| %>
 <div class="col mb-4">
-  <div class="card">
+  <div class="card  bg-light text-dark">
     <div class="card-body">
-      <h1 class="card-title"><%= link_to event.title, event_path(event) %></h1>
-            <h5 class="card-text"><%= event.city ? "#{event.city}, #{event.state}" : "This event is virtual" %></h5>
+      <h3 class="card-title text-center"><%= link_to event.title, event_path(event), class: "text-dark" %></h3>
+            <h6 class="card-text text-center"><%= event.city ? "#{event.city}, #{event.state}" : "This event is virtual" %></h6>
 
       <p class="card-text"><%= event.description %></p>
       <p class="card-text"> <%= event.start.strftime("%A - %b %d, %Y  at %I:%M %p") %></p>
@@ -20,7 +27,7 @@
         <p class="text-success text-center">Already joined!</p>
       <% else %>
       <div class="text-center">
-        <%= button_to "Join Event", "/events/#{event.id}/register", :method => "get", class: "btn btn-primary"%>
+        <%= button_to "Join Event", "/events/#{event.id}/register", :method => "get", class: "btn btn-dark"%>
       </div>
       <% end%>
     </div>
@@ -32,7 +39,4 @@
 </div>
 
 
-<% if current_user %>
-<%= button_to "Create Event", new_event_path, :method => "get"%>
-<% end %>
 </div>
