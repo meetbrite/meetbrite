@@ -1,18 +1,27 @@
-<div class="container">
-<h1>Login</h1>
+<div class="container mt-3" >    
+    <h1 class="text-center">Login</h1>
 
-<p> <%= flash[:alert] %> </p>
-<%= form_for(:session, url: "/sessions") do |f| %>
-    <div class="form-group">
-        <%= f.label :email %>
-        <%= f.text_field :email, class: "form-control" %>
+    <p class="text-center mt-3" style="color:red"> <%= flash[:alert] %> </p>
+    <%= form_for(:session, url: "/sessions") do |f| %>
+        <div class="form-group row justify-content-center">
+            <div class="col-lg-4">
+                <%= f.label :email %>
+                <%= f.text_field :email, class: "form-control" %>
+            </div>
+        </div>
+        <div class="form-group row justify-content-center">
+            <div class="col-lg-4">
+
+                <%= f.label :password %>
+                <%= f.password_field :password, class: "form-control"  %>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <%= f.submit "Login", :class => "btn btn-primary" %>
+        </div>
+    <% end %>
+    <br>
+    <div class="row justify-content-center">
+        <%= link_to "Don't have an account? Sign up here", "/signup" %>
     </div>
-    <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, class: "form-control"  %>
-    </div>
-    <%= f.submit "Login", :class => "btn btn-primary" %>
-<% end %>
-<br>
-<%= link_to "Don't have an account? Sign up here", "/signup" %>
 </div>
