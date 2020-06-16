@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-    before_action :authenticate, :except => [:index, :show] #unregistered users can only see index of the events route
+    before_action :authenticate, :except => [:index, :show, :search] #unregistered users can only see index of the events route
 
     def index
         @events = Event.where(public: true)
@@ -55,6 +55,20 @@ class EventsController < ApplicationController
         event_user.destroy
         redirect_to user_path(session[:user_id])
     end
+
+    def search 
+       if params[:events][:name] == ""
+            @events = Event.where(public: true)
+            @user = current_user
+       else 
+            #@events = Event.where("title LIKE :title AND public  :public", { title: "%#{params[:events][:name]}%", public: "%#{true}%"  })
+            @events = Event.where("title LIKE ?", "%#{params[:events][:name]}%") # How can we add an additional condition to return public events only 
+            #@events = Event.where("title LIKE ? AND public LIKE ?", "%#{params[:events][:name]}%", "true" )
+            @user = current_user
+       end 
+      
+       render :index 
+    end 
 
     private
 
