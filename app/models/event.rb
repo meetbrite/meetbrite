@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
+    has_many :event_user #singularized 
     has_many :users, through: :event_user
-    has_many :event_users
     has_many :group_messages
 
     validates :title, presence: true
@@ -35,6 +35,12 @@ class Event < ApplicationRecord
         end 
     end 
 
+    #return members of an event 
+    def members 
+        self.users 
+    end 
+
+    # custom validations
     def end_time_later_than_start
         if self.start >= self.end
             self.errors.add(:start, "date/time must be before End date/time")

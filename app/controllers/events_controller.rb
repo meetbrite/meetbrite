@@ -1,10 +1,9 @@
 class EventsController < ApplicationController
-    before_action :authenticate, :except => [:index, :show] #unregistered users can only see index of the events route
+    before_action :authenticate, :except => [:index, :show, :search] #unregistered users can only see index of the events route
 
     def index
         @events = Event.where(public: true)
         @user = current_user
-        # @joined = @event.is_user_joined(@user) #returns true if user has joined event
     end
 
     def show
@@ -12,6 +11,12 @@ class EventsController < ApplicationController
         @user = current_user 
         @joined = @event.is_user_joined(@user) #returns true if user has joined event
         @organizer = @event.is_user_organizer(@user) #returns true if user is an organzier
+
+   #if event is private, restrict access to organizer and enrolled users only 
+   
+        if !@event.public && !@organizer && !@joined  
+            redirect_back(fallback_location: events_path)
+        end 
     end
 
     def new
@@ -49,17 +54,54 @@ class EventsController < ApplicationController
     end
 
     #Lets user join an event 
-    def register 
-        event = Event.find(params[:event_id])  #is it necessary to find the event? can't we just use the id from params
-        EventUser.create(user_id: session[:user_id], event_id: event.id, organizer: false)
-        redirect_to user_path(session[:user_id])
-    end
+    # def register 
+    #     event = Event.find(params[:event_id])  #is it necessary to find the event? can't we just use the id from params
+    #     EventUser.create(user_id: session[:user_id], event_id: event.id, organizer: false)
+    #     redirect_to user_path(session[:user_id])
+    # end
 
     #Lets user leave an event 
     def unregister 
         event_user = EventUser.find_by(user_id: session[:user_id], event_id: params[:event_id])
         event_user.destroy
         redirect_to user_path(session[:user_id])
+    end
+
+    def search 
+       if params[:events][:attr] == ""
+            @events = Event.where(public: true)
+            @user = current_user
+       else 
+            #@events = Event.where("title LIKE :title AND public  :public", { title: "%#{params[:events][:attr]}%", public: "%#{true}%"  })
+            #@events = Event.where("title LIKE ? AND public LIKE ?", "%#{params[:events][:attr]}%", "true" )
+            @events = Event.where("title LIKE ?", "%#{params[:events][:attr]}%") # How can we add an additional condition to return public events only 
+            @user = current_user
+       end 
+      
+       render :index 
+    end 
+
+
+    def organizer
+        @user = current_user
+        @events = @user.organized_events 
+    end 
+
+    #Lets user join an event 
+    def add_member 
+        event = Event.find(params[:event_id])  #is it necessary to find the event? can't we just use the id from params
+        user = User.find_by(email: params[:events][:email])
+        if user  
+            if !event.is_user_joined(user)
+                EventUser.create(user_id: user.id, event_id: event.id, organizer: false)
+                redirect_back(fallback_location: user_path(session[:user_id]))
+            else 
+                flash[:error] = "User already joined!"
+            end 
+        else 
+            flash[:error] = "User doesn't exist "
+            redirect_back(fallback_location: user_path(session[:user_id]))
+        end 
     end
 
     private

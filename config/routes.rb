@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  get '/events/search', to: 'events#search'
+
   resources :group_messages
   resources :direct_messages
   resources :event_users
@@ -11,10 +14,14 @@ Rails.application.routes.draw do
 
   get "/events/:event_id/register", to: "events#register", as: 'event_register_user'
   get "/events/:event_id/unregister", to: "events#unregister", as: 'event_unregister_user'
+  #get "/events/:user_id/organizer", to: "events#organizer", as: 'organizer'
+  post "/events/:event_id/organizer/add_member", to: "events#add_member", as: 'add_member'
 
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout' #make it post or delete
+
+  
 
 
 
