@@ -1,4 +1,10 @@
 <div class="container">
+
+    <% if flash[:errors] %>
+        <% flash[:errors].each do |error| %>
+            <p style="color:red"> <%= error%> </p>
+        <% end %>
+    <% end %>
     <%= form_for @event do |f| %>
         <div class="form-group row">
             <div class="col-lg-4">
@@ -18,12 +24,11 @@
 
         <div class="form-check">
 
-            <%= f.radio_button :virtual, false, class: "form-check-input" %>
+            <%= f.radio_button :virtual, false, :checked => true, class: "form-check-input" %>
             <%= f.label :virtual, "In-Person", class: "form-check-label" %>
-        </div>
-        <div class="form-check">
-            <%= f.radio_button :virtual, true, class: "form-check-input" %>
-            <%= f.label :virtual, "Virtual", class: "form-check-label" %>
+       
+            <%= f.radio_button :virtual, true, class: "form-check-input ml-2" %>
+            <%= f.label :virtual, "Virtual", class: "form-check-label ml-4" %>
         </div>
         <br>
 

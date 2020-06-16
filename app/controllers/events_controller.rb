@@ -25,8 +25,14 @@ class EventsController < ApplicationController
 
     def create
         @event = Event.create(event_params) #create an event 
-        EventUser.create(user_id: session[:user_id], event_id: @event.id, organizer: true) #creates assoication between creater(user) and event
-        redirect_to event_path(@event)
+        if @event.valid?
+            EventUser.create(user_id: session[:user_id], event_id: @event.id, organizer: true) #creates assoication between creater(user) and event
+            redirect_to event_path(@event)
+        else 
+            flash[:errors] = @event.errors.full_messages 
+            redirect_to new_event_path
+
+        end
     end
 
     def edit
@@ -101,6 +107,6 @@ class EventsController < ApplicationController
     private
 
     def event_params
-        params.require(:event).permit(:title, :description, :location_name, :street_address, :city, :state, :zipcode, :start, :end, :active, :public)
+        params.require(:event).permit(:title, :description, :location_name, :street_address, :city, :state, :zipcode, :start, :end, :active, :public, :virtual)
     end
 end
