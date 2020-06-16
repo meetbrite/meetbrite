@@ -6,6 +6,7 @@ class GroupMessagesController < ApplicationController
         @joined = @event.is_user_joined(@user) 
         if @joined            #verify if user is allowed to see the event's chat
             @messages = GroupMessage.where(event_id: params[:event_id])
+            @members = @event.users 
         else 
             redirect_back(fallback_location: user_path(@user))
         end 

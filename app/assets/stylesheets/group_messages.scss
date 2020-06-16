@@ -1,3 +1,15 @@
 // Place all the styles related to the GroupMessages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.event-members {
+    max-height: 50vh;
+    overflow-y: scroll;
+}
+
+.group-message {
+    height: 60vh;
+    width: 55vw;
+    overflow-y: scroll;
+    background-color: #eaeaea;
+}

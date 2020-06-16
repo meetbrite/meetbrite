@@ -1,21 +1,40 @@
+<div class="container-fluid">
 <h1>Event: <%= @event.title %> </h1>
 <br>
-<h4>Conversation:</h4>
 <br>
 
+<div class="d-flex justify-content-between">
+    <div class="column">
+        <h4>Conversation:</h4>
+        <br>
+        <!-- display messages -->
+        <div class="group-message">
+        <% if @messages %>
+        <div id="messages", event_id="<%= @event.id %>">
+            <% @messages.each do |message| %>
+                <%= render "group_messages/message", message: message %>
+            <% end %>
+        </div>
+        <% end %>
+        <!-- display message input box -->
+        <%= form_tag group_messages_path  do %>
+            <%= text_field_tag :message %>
+            <%= hidden_field_tag "event_id", params[:event_id] %>
+            <%= submit_tag "Send", data: { disable_with: false }%>
+        <% end %>
+        </div>
+    </div>
 
-<% if @messages %>
- <div id="messages", event_id="<%= @event.id %>">
-    <% @messages.each do |message| %>
-        <%= render "group_messages/message", message: message %>
-    <% end %>
- </div>
-<% end %>
 
-
-
-<%= form_tag group_messages_path  do %>
-    <%= text_field_tag :message %>
-    <%= hidden_field_tag "event_id", params[:event_id] %>
-    <%= submit_tag "Send", data: { disable_with: false }%>
-<% end %>
+    <div class="card column event-members"  style="width: 20rem;">
+    <div class="card-header">
+        Members : <%= @members.length %>
+    </div>
+    <ul class="list-group list-group-flush">
+        <% @members.each do |member| %>
+            <li class="list-group-item"><a href="/users/<%=@user.id%>/direct_message/<%=member.id %>"><%= member.first_name%> <%=member.last_name %> </a></li>
+        <% end %>
+    </ul>
+    </div>
+    </div>
+</div>
