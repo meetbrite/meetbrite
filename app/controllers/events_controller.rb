@@ -48,11 +48,11 @@ class EventsController < ApplicationController
     end
 
     #Lets user join an event 
-    def register 
-        event = Event.find(params[:event_id])  #is it necessary to find the event? can't we just use the id from params
-        EventUser.create(user_id: session[:user_id], event_id: event.id, organizer: false)
-        redirect_to user_path(session[:user_id])
-    end
+    # def register 
+    #     event = Event.find(params[:event_id])  #is it necessary to find the event? can't we just use the id from params
+    #     EventUser.create(user_id: session[:user_id], event_id: event.id, organizer: false)
+    #     redirect_to user_path(session[:user_id])
+    # end
 
     #Lets user leave an event 
     def unregister 

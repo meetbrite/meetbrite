@@ -22,11 +22,11 @@ class User < ApplicationRecord
 
 
         #return all events of an organizer 
-    def organized_events 
-        event_users = EventUser.where(user_id: self.id, organizer: true)
-        event_users.map do |event_user|
-            event_user.event
-        end 
-    end 
+    # def organized_events 
+    #     event_users = EventUser.where(user_id: self.id, organizer: true)
+    #     event_users.map do |event_user|
+    #         event_user.event
+    #     end 
+    # end 
 
 end
