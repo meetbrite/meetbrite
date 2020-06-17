@@ -20,9 +20,10 @@
     
     overflow-y: scroll;
     height: fit-content;
-    border-radius: 2rem;
+    // border-radius: 2rem;
     max-height: 50vh;
     width: 100%;
+    padding: 0;
 }
 
 .message-input {

@@ -53,9 +53,9 @@ class Event < ApplicationRecord
             .joins(:users)
             .select("users.*, count(users.id) as scount")
             .group("users.id")
-            .order("scount DESC")
+            .order("count DESC")
 
-            byebug 
+            # byebug 
     end 
 
     # custom validations
