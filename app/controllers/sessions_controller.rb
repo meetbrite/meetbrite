@@ -19,6 +19,8 @@ class SessionsController < ApplicationController
     # handles user logout, accessed from /logout
     def destroy 
         session[:user_id] = nil 
+        flash[:message] = "You have successfully logged out"
+
         redirect_to events_path 
     end
 
