@@ -2,7 +2,7 @@ class EventsController < ApplicationController
     before_action :authenticate, :except => [:index, :show, :search] #unregistered users can only see index of the events route
 
     def index
-        @events = Event.where(public: true)
+        @events = Event.where("public = ? AND end > ?", true, DateTime.now - 4.hours)
         @user = current_user
         @search_entry = nil
     end
