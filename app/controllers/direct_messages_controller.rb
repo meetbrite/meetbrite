@@ -9,7 +9,6 @@ class DirectMessagesController < ApplicationController
 
     def create 
         @message = DirectMessage.create(sender_id: session[:user_id], receiver_id: params[:receiver_id], message: params[:message])
-
        SendDirectMessageJob.perform_later(@message)
        #redirect_to request.referrer 
     end 
