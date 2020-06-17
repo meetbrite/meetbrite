@@ -1,32 +1,96 @@
-<h1><%= @event.title %></h1>
-<h4><%= @event.location %></h4>
-<h4><%= @event.description %></h4>
-<h4><%= @event.start.strftime("%A - %b %d, %Y  at %I:%M %p") %></h4>
-<h4><%= @event.end.strftime("%A - %b %d, %Y  at %I:%M %p")  %></h4>
 
 
- <!-- route not set up yet -->
- <% if @user %>
-    <% if !@joined %>
-        <%= button_to "Join Event", "/events/#{@event.id}/register", :method => "get"%>
-    <% elsif @joined && @organizer %> 
-        <%= button_to "Delete Event", event_path(@event), :method => "delete" %>
-        <%= button_to "Update Event", edit_event_path(@event), :method => "get" %>
-    <% else %>
-        <%= button_to "Leave Event", "/events/#{@event.id}/unregister", :method => "get" %>
+<div class="jumbotron container mt-5 pl-5">
+    <h1 class="display-3"><%= @event.title %></h1>
+    <% if @event.virtual %>
+        <h4 class="lead text-info">This event is virtual</h4>
+        <% else %>
+        <h4 class="lead"><%= "#{@event.street_address}"%></h4>
+        <h4 class="lead"><%= "#{@event.city}, #{@event.state} #{@event.zipcode}"%></h4>
+
     <% end %>
-<% else %>
-    <p>You must be logged in to join this event</p>
-    <%= button_to "Join Event", "/login", :method => "get"%>
-<% end %>
+    <h4><%= @event.description %></h4>
+    <h4 class="lead"><%= @event.start.strftime("%A - %b %d, %Y  at %I:%M %p") %></h4>
+    <h4 class="lead"><%= @event.end.strftime("%A - %b %d, %Y  at %I:%M %p")  %></h4>
+
+    <% if !@event.public %>
+        <h4 class="lead" style="color:slategrey">This event is private</h4>
+    <% end %>
+    <br>
+
+    <% if @user %>
+        <% if !@joined %>
+            <%= button_to "Join Event", "/events/#{@event.id}/register", :method => "get", class: "btn btn-outline-info"%>
+        <% elsif @joined && @organizer %> 
+        <div class="row">
+            <div class="col-xs-4 ">
+                <%= button_to "Event Chat", "/users/#{current_user.id}/group_message/#{@event.id}", :method => "get", class: "btn btn-outline-success"%>
+            </div>
+            <div class="col-xs-4 ml-5">
+                <%= button_to "Delete Event", event_path(@event), :method => "delete", class: "btn btn-outline-danger"%>
+            </div>
+            <div class="col-xs-4 ml-5 ">
+                <%= button_to "Update Event", edit_event_path(@event), :method => "get", class: "btn btn-outline-secondary" %>
+            </div>
+        </div>
+        <% else %>
+
+            <div class="row">
+                <div class="col-xs-4 ">
+                    <%= button_to "Event Chat", "/users/#{current_user.id}/group_message/#{@event.id}", :method => "get", class: "btn btn-outline-success"%>
+                </div>
+                <div class="col-xs-4 ml-5">
+                    <%= button_to "Leave Event", "/events/#{@event.id}/unregister", :method => "get", class: "btn btn-outline-danger"%>
+                </div>
+            </div>
+
+        <% end %>
+    <% else %>
+        <p>You must be logged in to join this event</p>
+        <%= button_to "Login", "/login", :method => "get", class: "btn btn-info"%>
+    <% end %>
+    <br>
+    <br>
+    <br>
+    <div id="map"></div>
+</div>
 
 
 
-<br>
-<br>
-<p>Possibly embed a map here to show event location</p>
 
+    <title>Simple Map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=**************************************&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 50vh;
+      }
+    </style>
+    <script>
+      (function(exports) {
+        "use strict";
 
+        function initMap() {
+            var myLatLng = {lat: <%= @event.latitude %>, lng: <%= @event.longitude %>};
+          exports.map = new google.maps.Map(document.getElementById("map"), {
+            center: myLatLng,
+            zoom: 14
+          });
+          var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Your Event Location'
+        });
+        }
+
+        exports.initMap = initMap;
+      })((this.window = this.window || {}));
+    </script>
 
 
 

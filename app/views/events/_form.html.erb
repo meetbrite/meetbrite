@@ -1,0 +1,101 @@
+<div class="container">
+
+    <% if flash[:errors] %>
+        <div class="form-group row justify-content-center mt-2">
+            <div class="col-lg-4">
+                <% flash[:errors].each do |error| %>
+                    <p style="color:red"> <%= error%> </p>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+    <%= form_for @event do |f| %>
+        <div class="form-group row justify-content-center">
+            <div class="col-lg-4">
+
+                <%= f.label :title  %>
+                <%= f.text_field :title, class: "form-control"  %>
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-lg-4">
+
+                <%= f.label :description %>
+                <%= f.text_area :description, class: "form-control"  %>
+            </div>
+        </div>
+
+        <div class="form-check text-center">
+
+            <%= f.radio_button :virtual, false, :checked => true, class: "form-check-input" %>
+            <%= f.label :virtual, "In-Person", class: "form-check-label" %>
+       
+            <%= f.radio_button :virtual, true, class: "form-check-input ml-2" %>
+            <%= f.label :virtual, "Virtual", class: "form-check-label ml-4" %>
+        </div>
+        <br>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-lg-4">
+
+                <%= f.label :street_address  %>
+                <%= f.text_field :street_address, class: "form-control"  %>
+            </div>
+        </div>
+
+
+        <div class="form-group row justify-content-center">
+            <div class="col-lg-4">
+
+                <%= f.label :city  %>
+                <%= f.text_field :city, class: "form-control"  %>
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-lg-4">
+
+                <%= f.label :state  %>
+                <%= f.text_field :state, class: "form-control"  %>
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-lg-4">
+
+                <%= f.label :zipcode  %>
+                <%= f.text_field :zipcode, class: "form-control"  %>
+            </div>
+        </div>
+
+
+        <div class="form-group row justify-content-center">
+            <div class="col-lg-4">
+                <%= f.label :start  %>
+                <%= f.datetime_select :start, class: "form-control"  %>
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-lg-4">
+                <%= f.label :end  %>
+                <%= f.datetime_select :end, class: "form-control"  %>
+            </div>        
+        </div>
+
+        <div class="form-check text-center">
+            <%= f.radio_button :public, true, :checked => true, class: "form-check-input" %>
+            <%= f.label :public, "Public", class: "form-check-label" %>
+
+            <%= f.radio_button :public, false, class: "form-check-input ml-2" %>
+            <%= f.label :public, "Private", class: "form-check-label ml-4" %>
+        </div>
+        <br>
+        <div class="row justify-content-center">
+            <%= f.submit class: "btn btn-primary mb-3"%>
+        </div>
+        <br>
+
+    <% end  %>
+    </div>

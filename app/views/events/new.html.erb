@@ -1,24 +1,2 @@
-<%= form_for @event do |f| %>
-    <%= f.label :title  %>
-    <%= f.text_field :title  %>
-
-    <%= f.label :description  %>
-    <%= f.text_area :description  %>
-
-    <%= f.label :location  %>
-    <%= f.text_field :location  %>
-
-    <%= f.label :start  %>
-    <%= f.datetime_select :start  %>
-
-    <%= f.label :end  %>
-    <%= f.datetime_select :end  %>
-
-    <%= f.radio_button(:public, true, :checked => true) %>
-    <%= f.label(:public, "Public") %>
-    <%= f.radio_button(:public, false) %>
-    <%= f.label(:public, "Private") %>
-
-    <%= f.submit %>
-
-<% end  %>
+<h1 class="text-center mt-3">Create an Event: </h1>
+<%= render "form" %>

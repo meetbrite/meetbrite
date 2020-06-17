@@ -18,11 +18,13 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+ gem 'redis'
 # Use Active Model has_secure_password
 gem 'bcrypt'
-# handle user authorization logic 
-gem "cancan"
+# Bootstrap
+gem 'bootstrap', '~> 4.5.0'
+gem 'jquery-rails'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -54,3 +56,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+#for geocoding (converting address to longitude and latitude)
+gem 'geocoder'

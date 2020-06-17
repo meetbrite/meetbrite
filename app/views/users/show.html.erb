@@ -1,31 +1,108 @@
-<h1>Welcome <%= @user.first_name %> to your show page </h1>
+<div class="container">
+<h1 class="mt-4 text-center">Welcome <%= @user.first_name %> </h1>
 
-<%=button_to "Create Event", new_event_path, :method => "get"%>
 <br>
-<h3>Events user has joined:</h3>
-<% if @user.events %> 
-    <% @user.events.each do |event|%>
-        <p> <%=link_to event.title, event_path(event) %></p>
+<div class="d-flex justify-content-between">
+<div id="events">
+    <div class="card" style="width: 20rem;">
+    <div class="card-header text-white bg-dark">
+        <h3>Your Events</h3>
+    </div>
+    
+        <% if @user.events.length > 0 %> 
+        <ul class="list-group list-group-flush">
+            <% @user.events.each do |event|%>
+            <li class="list-group-item"><%=link_to event.title, event_path(event) %></li>
+            <% end %>
+        </ul>
+        <% else  %> 
+        <div class="card-body">
+            <p class="card-text">You have no events!! </p>
+            <p class="card-text"><%=link_to "Search Events", events_path %></p>
+        </div>
+        <% end %> 
+   
+    </div>
+    <div class="text-center">
+         <%=button_to "Create Event", new_event_path,class:"btn btn-dark mt-3", :method => "get"%>
+    </div>
+    
+</div>
+<br>
+<br>
+
+<div id="messages"> 
+    
+    
+
+    <div class="card" style="width: 18rem;">
+    <div class="card-header text-white bg-dark">
+        <h3>Messages:</h3>
+    </div>
+    <div class="card-header">
+        <h5>Group Messages:</h5>
+    </div>
+        
+        <% if @user.events.length > 0 %>
+        <ul class="list-group list-group-flush">
+            <% @user.events.each do |event| %> 
+            <li class="list-group-item"><%= link_to event.title, "#{@user.id}/group_message/#{event.id}" %></li>
+            <% end %>
+        </ul>
+        <% else %>
+            <div class="card-body">
+            <p class="card-text">Add events to see messages! </p>
+            <p class="card-text"><%=link_to "Search Events", events_path %></p>
+        </div>
+        <% end %>
+      
+    </div>
+
+
+    <br>
+
+
+    <div class="card" style="width: 18rem;">
+    <div class="card-header">
+        <h5>Direct Messages:</h5>
+    </div>
+    <% if @user.people_messaged.length >0 %>
+    <ul class="list-group list-group-flush">
+            <% @user.people_messaged.each do |msg| %> 
+            <li class="list-group-item"><%= link_to msg.sender.first_name, "#{@user.id}/direct_message/#{msg.sender_id}" %> </li>
+            <% end %>
+    </ul>
+    <% else %>
+        <div class="card-body">
+            <p class="card-text">No Messages! </p>
+        </div>
     <% end %>
-<% else  %> 
-    <p>You have no events!! Search all public events</p>
-<% end %> 
-
-<br>
-<br>
-<h3>List of messages a user is part of</h3>
-
-<h5>Group Messages:</h5>
-
-<% @user.events.each do |event| %> 
-    <p><%= link_to event.title, "#{@user.id}/group_message/#{event.id}" %> </p>
-<% end %>
-
-<br>
-
-<h5>Direct Messages:</h5>
+    </div>
+</div>
+</div>
 
 
-<% @user.people_messaged.each do |msg| %> 
-    <p><%= link_to msg.sender.first_name, "#{@user.id}/direct_message/#{msg.sender_id}" %> </p>
-<% end %>
+
+
+    <!--    --> 
+    <div class="d-flex justify-content-between">
+        <div class="card" style="width: 20rem;">
+            <div class="card-header text-white bg-dark">
+                <h3>Popular Events</h3>
+            </div>
+                <% if @user.events.length > 0 %> 
+                <ul class="list-group list-group-flush">
+                    <% @user.events.each do |event|%>
+                    <li class="list-group-item"><%=link_to event.title, event_path(event) %></li>
+                    <% end %>
+                </ul>
+                <% else  %> 
+                <div class="card-body">
+                    <p class="card-text">There are no popular events!! </p>
+                    <p class="card-text"><%=link_to "Search Events", events_path %></p>
+                </div>
+                <% end %> 
+        </div>
+    </div>
+
+</div>

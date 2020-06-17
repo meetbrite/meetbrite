@@ -10,6 +10,36 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
+
  */
+ // Custom bootstrap variables must be set or imported *before* bootstrap.
+ @import "bootstrap";
+ @import "group_messages.css.scss"; 
+ 
+ .event-members {
+    
+    overflow-y: scroll;
+    height: fit-content;
+    // border-radius: 2rem;
+    max-height: 50vh;
+    width: 100%;
+    padding: 0;
+}
+
+.message-input {
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+}
+
+.message{
+    height: 70vh;
+    max-width: 1160px;
+    overflow-y: scroll;
+    border-radius: 1rem;
+    margin-bottom: 5px;
+}
+
+.group-message {
+    background-color: #eaeaea;
+}
