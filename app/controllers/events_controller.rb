@@ -44,7 +44,14 @@ class EventsController < ApplicationController
         @event = Event.find(params[:id])
         @event.update(event_params)
 
-        redirect_to event_path(@event)
+        if @event.valid?
+            redirect_to event_path(@event)
+        else 
+            flash[:errors] = @event.errors.full_messages 
+            flash[:errors].unshift "Your event was not updated:"
+            redirect_to edit_event_path
+        end
+
     end
 
     def destroy
@@ -55,11 +62,11 @@ class EventsController < ApplicationController
     end
 
     #Lets user join an event 
-    # def register 
-    #     event = Event.find(params[:event_id])  #is it necessary to find the event? can't we just use the id from params
-    #     EventUser.create(user_id: session[:user_id], event_id: event.id, organizer: false)
-    #     redirect_to user_path(session[:user_id])
-    # end
+    def register 
+        event = Event.find(params[:event_id])  #is it necessary to find the event? can't we just use the id from params
+        EventUser.create(user_id: session[:user_id], event_id: event.id, organizer: false)
+        redirect_to user_path(session[:user_id])
+    end
 
     #Lets user leave an event 
     def unregister 
