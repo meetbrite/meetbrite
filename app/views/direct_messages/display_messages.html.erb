@@ -1,4 +1,5 @@
 <div class="container mt-3">
+    <input type="hidden" id="receiver_id", value="<%= @receiver.id %>">
     <h1 class="text-center">Direct Chat with <%= @receiver.first_name %> </h1>
     <br>
 
@@ -13,7 +14,7 @@
                     </div>
                 <% end %>
 
-                <div class="ml-2 message-input" >
+                <div class="ml-2 " >
 
                     <%= form_tag direct_messages_path  do %>
                         <div class="form-group d-flex mr-2 ">

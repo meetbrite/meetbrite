@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-    has_many :event_user #singularized 
+    has_many :event_user, dependent: :destroy #singularized 
     has_many :users, through: :event_user
     has_many :group_messages
 

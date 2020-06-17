@@ -4,11 +4,11 @@ Rails.application.routes.draw do
 
   get '/events/search', to: 'events#search'
 
-  resources :group_messages
-  resources :direct_messages
-  resources :event_users
+  resources :group_messages, only: [:create]
+  resources :direct_messages, only: [:create]
+  #resources :event_users
   resources :events
-  resources :users
+  resources :users, only: [:show, :new, :create]
   resources :sessions, only: [:new, :create, :destroy]
 
   get '/users/:first_id/direct_message/:second_id', to: 'direct_messages#display_messages', as: 'display_direct_messages'
