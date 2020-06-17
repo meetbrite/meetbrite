@@ -11,8 +11,15 @@ class Event < ApplicationRecord
     validates :end, presence: true
     validate :end_time_later_than_start
     validate :start_time_must_be_in_future
+
+    #This will generate the logitute and latitude of the address 
+    geocoded_by :full_address
+    after_validation :geocode
     # validates :start, numericality: {greater_than: DateTime.now}
 
+    def full_address
+       [street_address, city, state, zipcode].join(',')
+    end 
 
     #returns true if user has already joined the event 
     def is_user_joined(user)
@@ -38,6 +45,17 @@ class Event < ApplicationRecord
     #return members of an event 
     def members 
         self.users 
+    end 
+
+    #return popular events (top 4 events with highest attendees)
+    def self.popular 
+        Event
+            .joins(:users)
+            .select("users.*, count(users.id) as scount")
+            .group("users.id")
+            .order("scount DESC")
+
+            byebug 
     end 
 
     # custom validations

@@ -49,14 +49,48 @@
         <p>You must be logged in to join this event</p>
         <%= button_to "Login", "/login", :method => "get", class: "btn btn-info"%>
     <% end %>
-
-
-
     <br>
     <br>
-    <p>Possibly embed a map here to show event location</p>
-
+    <br>
+    <div id="map"></div>
 </div>
+
+
+
+
+    <title>Simple Map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=**************************************&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 50vh;
+      }
+    </style>
+    <script>
+      (function(exports) {
+        "use strict";
+
+        function initMap() {
+            var myLatLng = {lat: <%= @event.latitude %>, lng: <%= @event.longitude %>};
+          exports.map = new google.maps.Map(document.getElementById("map"), {
+            center: myLatLng,
+            zoom: 14
+          });
+          var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Your Event Location'
+        });
+        }
+
+        exports.initMap = initMap;
+      })((this.window = this.window || {}));
+    </script>
 
 
 

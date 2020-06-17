@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     def show 
         #only logged in user have access to this route 
         @user = current_user 
+        @popular_events = Event.popular 
     end 
 
     def new 

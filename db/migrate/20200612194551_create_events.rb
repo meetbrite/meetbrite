@@ -11,6 +11,8 @@ class CreateEvents < ActiveRecord::Migration[6.0]
       t.string :city
       t.string :state
       t.string :zipcode
+      t.float :latitude 
+      t.float :longitude 
       t.datetime :start
       t.datetime :end
 
