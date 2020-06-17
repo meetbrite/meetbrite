@@ -2,7 +2,7 @@
 
     <% if flash[:errors] %>
         <div class="form-group row justify-content-center mt-2">
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <% flash[:errors].each do |error| %>
                     <p style="color:red"> <%= error%> </p>
                 <% end %>
@@ -11,7 +11,7 @@
     <% end %>
     <%= form_for @event do |f| %>
         <div class="form-group row justify-content-center">
-            <div class="col-lg-4">
+            <div class="col-lg-5">
 
                 <%= f.label :title  %>
                 <%= f.text_field :title, class: "form-control"  %>
@@ -19,7 +19,7 @@
         </div>
 
         <div class="form-group row justify-content-center">
-            <div class="col-lg-4">
+            <div class="col-lg-5">
 
                 <%= f.label :description %>
                 <%= f.text_area :description, class: "form-control"  %>
@@ -37,7 +37,7 @@
         <br>
 
         <div class="form-group row justify-content-center">
-            <div class="col-lg-4">
+            <div class="col-lg-5">
 
                 <%= f.label :street_address  %>
                 <%= f.text_field :street_address, class: "form-control"  %>
@@ -46,7 +46,7 @@
 
 
         <div class="form-group row justify-content-center">
-            <div class="col-lg-4">
+            <div class="col-lg-5">
 
                 <%= f.label :city  %>
                 <%= f.text_field :city, class: "form-control"  %>
@@ -54,7 +54,7 @@
         </div>
 
         <div class="form-group row justify-content-center">
-            <div class="col-lg-4">
+            <div class="col-lg-5">
 
                 <%= f.label :state  %>
                 <%= f.text_field :state, class: "form-control"  %>
@@ -62,7 +62,7 @@
         </div>
 
         <div class="form-group row justify-content-center">
-            <div class="col-lg-4">
+            <div class="col-lg-5">
 
                 <%= f.label :zipcode  %>
                 <%= f.text_field :zipcode, class: "form-control"  %>
@@ -71,14 +71,14 @@
 
 
         <div class="form-group row justify-content-center">
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <%= f.label :start  %>
                 <%= f.datetime_select :start, class: "form-control"  %>
             </div>
         </div>
 
         <div class="form-group row justify-content-center">
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <%= f.label :end  %>
                 <%= f.datetime_select :end, class: "form-control"  %>
             </div>        
