@@ -14,7 +14,29 @@
  */
  // Custom bootstrap variables must be set or imported *before* bootstrap.
  @import "bootstrap";
- @import "group_messages.scss";   
-
-
+ @import "group_messages.css.scss"; 
  
+ .event-members {
+    
+    overflow-y: scroll;
+    height: fit-content;
+    border-radius: 2rem;
+    max-height: 50vh;
+    width: 100%;
+}
+
+// .message-input {
+//     position: absolute;
+//     bottom: 0;
+//     width: 90%;
+// }
+
+
+.group-message {
+    height: 70vh;
+    max-width: 1160px;
+    overflow-y: scroll;
+    background-color: #eaeaea;
+    border-radius: 1rem;
+    margin-bottom: 5px;
+}
