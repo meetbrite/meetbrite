@@ -5,6 +5,8 @@ document.addEventListener('turbolinks:load', () => {
  const direct_id = document.getElementById('direct_id').value 
   // console.log("direct_id", direct_id)
 
+  const receiver_id = document.getElementById('receiver_id').value ;
+
 consumer.subscriptions.create({channel: "DirectChannel", direct_id: direct_id}, {
   connected() {
     // Called when the subscription is ready for use on the server
@@ -17,11 +19,14 @@ consumer.subscriptions.create({channel: "DirectChannel", direct_id: direct_id}, 
 
   received(data) {
     // Called when there's incoming data on the websocket for this channel
+    console.log (data);
+
     const messageContainer = document.getElementById('messages')
     messageContainer.innerHTML = messageContainer.innerHTML + data.html
     //automate message scrolling 
     var objDiv = document.getElementById("message-scroll-bottom");
     objDiv.scrollTop = objDiv.scrollHeight;
+
   }
 });
 
