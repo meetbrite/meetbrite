@@ -1,7 +1,10 @@
 
 
-<div class="jumbotron container mt-5 pl-5">
+<div class="jumbotron container mt-5 pl-5 text-center">
     <h1 class="display-3"><%= @event.title %></h1>
+     <% if @event.location_name%>
+              <h5 class="card-text"><%= @event.location_name %></h6>
+    <% end %>
     <% if @event.virtual %>
         <h4 class="lead text-info">This event is virtual</h4>
         <% else %>
@@ -17,12 +20,13 @@
         <h4 class="lead" style="color:slategrey">This event is private</h4>
     <% end %>
     <br>
-
     <% if @user %>
         <% if !@joined %>
-            <%= button_to "Join Event", "/events/#{@event.id}/register", :method => "get", class: "btn btn-outline-info"%>
+            <div class="text-center">  
+                <%= button_to "Join Event", "/events/#{@event.id}/register", :method => "get", class: "btn btn-outline-info"%>
+            </div>
         <% elsif @joined && @organizer %> 
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-xs-4 ">
                 <%= button_to "Event Chat", "/users/#{current_user.id}/group_message/#{@event.id}", :method => "get", class: "btn btn-outline-success"%>
             </div>
@@ -35,7 +39,7 @@
         </div>
         <% else %>
 
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-xs-4 ">
                     <%= button_to "Event Chat", "/users/#{current_user.id}/group_message/#{@event.id}", :method => "get", class: "btn btn-outline-success"%>
                 </div>
@@ -46,8 +50,11 @@
 
         <% end %>
     <% else %>
+            <div class="text-center">  
+
         <p>You must be logged in to join this event</p>
         <%= button_to "Login", "/login", :method => "get", class: "btn btn-info"%>
+        </div>
     <% end %>
     <br>
     <br>

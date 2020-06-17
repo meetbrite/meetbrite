@@ -3,12 +3,15 @@
     <%= f.text_field :attr, placeholder: "Search", value:@search_entry, class: "form-control mr-sm-2"  %>
     <%= f.submit "Search", class: "btn btn-outline-success my-2 my-sm-0" %>
   <% end %>
+
+  
   <% if current_user %>
     <div class = "mt-2">
       <%= button_to "Create Event", new_event_path, class: "btn btn-outline-dark ", :method => "get"%>
     </div>
   <% end %>
 </div>
+  <p style="color:red" class="text-center"><%= flash[:message] %></p>
 
 <div class="m-4">
   <div class="row row-cols-1 row-cols-md-3">
@@ -19,8 +22,8 @@
           <div class="card-body">
             <h3 class="card-title text-center"><%= link_to event.title, event_path(event), class: "text-dark" %></h3>
             <h6 class="card-text text-center"><%= !event.virtual ? "#{event.city}, #{event.state}" : "This event is virtual" %></h6>
-            <p class="card-text"><%= event.description %></p>
-            <p class="card-text"> <%= event.start.strftime("%A - %b %d, %Y  at %I:%M %p") %></p>
+            <p class="card-text text-center"><%= event.description %></p>
+            <p class="card-text text-center"> <%= event.start.strftime("%A - %b %d, %Y  at %I:%M %p") %></p>
 
             <% if event.is_user_organizer(@user) %>
               <p class="text-info text-center">You organized this event</p>
