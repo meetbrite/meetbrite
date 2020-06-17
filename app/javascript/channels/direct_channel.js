@@ -19,6 +19,9 @@ consumer.subscriptions.create({channel: "DirectChannel", direct_id: direct_id}, 
     // Called when there's incoming data on the websocket for this channel
     const messageContainer = document.getElementById('messages')
     messageContainer.innerHTML = messageContainer.innerHTML + data.html
+    //automate message scrolling 
+    var objDiv = document.getElementById("message-scroll-bottom");
+    objDiv.scrollTop = objDiv.scrollHeight;
   }
 });
 

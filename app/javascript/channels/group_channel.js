@@ -18,6 +18,9 @@ document.addEventListener('turbolinks:load', () => {
       // console.log(data)
       const messageContainer = document.getElementById('messages')
       messageContainer.innerHTML = messageContainer.innerHTML + data.html
+      //automate message scrolling 
+      var objDiv = document.getElementById("message-scroll-bottom");
+      objDiv.scrollTop = objDiv.scrollHeight;
     }
   });
 
