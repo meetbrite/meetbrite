@@ -81,4 +81,28 @@
 </div>
 </div>
 
+
+
+
+    <!--    --> 
+    <div class="d-flex justify-content-between">
+        <div class="card" style="width: 20rem;">
+            <div class="card-header text-white bg-dark">
+                <h3>Popular Events</h3>
+            </div>
+                <% if @popular_events.length > 0 %> 
+                <ul class="list-group list-group-flush">
+                    <% @user.events.each do |event|%>
+                    <li class="list-group-item"><%=link_to event.title, event_path(event) %></li>
+                    <% end %>
+                </ul>
+                <% else  %> 
+                <div class="card-body">
+                    <p class="card-text">There are no popular events!! </p>
+                    <p class="card-text"><%=link_to "Search Events", events_path %></p>
+                </div>
+                <% end %> 
+        </div>
+    </div>
+
 </div>
