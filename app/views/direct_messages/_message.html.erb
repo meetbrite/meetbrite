@@ -1,5 +1,5 @@
 <div  style="<%= message.sender == current_user ?  "background-color: #ccc;" : "border-color: #dedede; background-color: #f1f1f1;" %>">
     <p class= "pl-2" style="word-wrap:break-word;"><span style="font-weight: bold;"><%= message.sender.first_name%></span> : <%= message.message %></p>
-<p class= "pl-2" style="font-size:12px;"><%= message.created_at.strftime("%b %d, %Y  at %I:%M %p") %></p>
+<p class= "pl-2" style="font-size:12px;"><%= (message.created_at - 4.hours).strftime("%b %d, %Y  at %I:%M %p") %></p>
     <hr>
 </div>

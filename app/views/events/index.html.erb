@@ -26,6 +26,10 @@
               <p class="text-info text-center">You organized this event</p>
             <% elsif event.is_user_joined(@user) %>
               <p class="text-success text-center">Already joined!</p>
+            <% elsif current_user == nil %>
+              <div class="text-center">
+                <%= button_to "Join Event", "/login", :method => "get", class: "btn btn-dark"%>
+              </div>
             <% else %>
               <div class="text-center">
                 <%= button_to "Join Event", "/events/#{event.id}/register", :method => "get", class: "btn btn-dark"%>

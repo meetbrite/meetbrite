@@ -90,7 +90,7 @@
             <div class="card-header text-white bg-dark">
                 <h3>Popular Events</h3>
             </div>
-                <% if @popular_events.length > 0 %> 
+                <% if @user.events.length > 0 %> 
                 <ul class="list-group list-group-flush">
                     <% @user.events.each do |event|%>
                     <li class="list-group-item"><%=link_to event.title, event_path(event) %></li>

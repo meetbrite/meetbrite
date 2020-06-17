@@ -26,7 +26,7 @@ event2 = Event.create(public: true, active: true, title: "Pair Programming", des
 event3 = Event.create(public: true, active: true, title: "Music Party 101", description: "Join us for a day filled with food and music", city: "Brooklyn", state: "NY", start: Time.new(2020,6,21,10), end: Time.new(2020,6,21,18))
 event4 = Event.create(public: false, active: true, title: "Block Party", description: "Let the neighbors get to know each other", street_address: "Campbell Avenue", city: "Edison", state: "NJ", zipcode: "08817", start: Time.new(2020,7,04,11), end: Time.new(2020,6,04,16))
 event5 = Event.create(public: false, active: true, title: "Flatiron Mixer", description: "Let the students get to know each other", location_name: "Flatiron School", street_address: "81 Prospect St", city: "Brooklyn", state: "NY", zipcode: "11201", start: Time.new(2020,7,10,12), end: Time.new(2020,6,10,13))
-event6 = Event.create(public: true, active: true, title: "Coding Tornment", description: "This is a coding tonrment for bootcamp grads", location_name: "Flatiron School", street_address: "81 Prospect St", city: "Brooklyn", state: "NY", zipcode: "11201", start: Time.new(2020,7,27,9), end: Time.new(2020,7,27,16))
+event6 = Event.create(public: true, active: true, title: "Coding Tournament", description: "This is a coding tournament for bootcamp grads", location_name: "Flatiron School", street_address: "81 Prospect St", city: "Brooklyn", state: "NY", zipcode: "11201", start: Time.new(2020,7,27,9), end: Time.new(2020,7,27,16))
 
 
 EventUser.create(user_id: user1.id, event_id: event4.id, organizer: true)
