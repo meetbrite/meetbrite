@@ -18,9 +18,9 @@ consumer.subscriptions.create({channel: "DirectChannel", direct_id: direct_id}, 
   received(data) {
     let html; 
     if(receiver_id == data.message.receiver_id){
-      html = data.receiver;
+      html =  data.sender;
     } else {
-      html = data.sender;
+      html =data.receiver;
     }
     
     // Called when there's incoming data on the websocket for this channel
