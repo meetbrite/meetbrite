@@ -4,6 +4,7 @@ class EventsController < ApplicationController
     def index
         @events = Event.where(public: true)
         @user = current_user
+        @search_entry = nil
     end
 
     def show
@@ -76,6 +77,7 @@ class EventsController < ApplicationController
             #@events = Event.where("title LIKE ? AND public LIKE ?", "%#{params[:events][:attr]}%", "true" )
             @events = Event.where("title LIKE ?", "%#{params[:events][:attr]}%") # How can we add an additional condition to return public events only 
             @user = current_user
+            @search_entry = params[:events][:attr]
        end 
       
        render :index 
