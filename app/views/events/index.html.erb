@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center"> 
   <%= form_for( :events, as: :search, url: "/events/search", method: :get, html: { class: "d-inline-flex p-2 bd-highlight"})  do |f| %>
-    <%= f.text_field :attr, placeholder: "Search", class: "form-control mr-sm-2"  %>
+    <%= f.text_field :attr, placeholder: "Search", value:@search_entry, class: "form-control mr-sm-2"  %>
     <%= f.submit "Search", class: "btn btn-outline-success my-2 my-sm-0" %>
   <% end %>
   <% if current_user %>

@@ -31,12 +31,14 @@
 //     width: 90%;
 // }
 
-
-.group-message {
+.message{
     height: 70vh;
     max-width: 1160px;
     overflow-y: scroll;
-    background-color: #eaeaea;
     border-radius: 1rem;
     margin-bottom: 5px;
+}
+
+.group-message {
+    background-color: #eaeaea;
 }
