@@ -21,6 +21,7 @@ user1 = User.create(first_name: "Bashir", last_name: "Alhanshali", email: "bashi
 user2 = User.create(first_name: "Elisheva", last_name: "Elbaz", email: "elisheva@elbaz.com", password: "hello", password_confirmation: "hello")
 user3 = User.create(first_name: "Bob", last_name: "Smith", email: "bob@smith.com", password: "hello", password_confirmation: "hello")
 user4 = User.create(first_name: "Anita", last_name: "Gold", email: "anita@gold.com", password: "hello", password_confirmation: "hello")
+user5 = User.create(first_name: "Jack", last_name: "Hilscher", email: "jack@hilscher.com", password: "hello", password_confirmation: "hello")
 
 
 
@@ -32,6 +33,8 @@ event4 = Event.create(public: false, active: true, title: "Block Party", descrip
 event5 = Event.create(public: false, active: true, title: "Flatiron Mixer", description: "Let the students get to know each other", location_name: "Flatiron School", street_address: "81 Prospect St", city: "Brooklyn", state: "NY", zipcode: "11201", start: Time.new(2020,7,10,12), end: Time.new(2020,6,10,13))
 event6 = Event.create(public: true, active: true, title: "Coding Tournament", description: "This is a coding tournament for bootcamp grads", location_name: "Flatiron School", street_address: "81 Prospect St", city: "Brooklyn", state: "NY", zipcode: "11201", start: Time.new(2020,7,27,9), end: Time.new(2020,7,27,16))
 event7 = Event.create(public: true, active: true, title: "Car Show", description: "Come and see our newest cars ", location_name: "Edison Auto Sales", street_address: "195 US-1", city: "Edison", state: "NJ", zipcode: "08817", start: Time.new(2020,7,01,9), end: Time.new(2020,7,01,18))
+event8 = Event.create(public: true, active: true, title: "Hackathon", description: "Show us what you can build in 24 hours!", location_name: "Flatiron School - Manhattan", street_address: "11 Broadway", city: "New York", state: "NY", zipcode: "10004", start: Time.new(2020,7,18,9), end: Time.new(2020,7,19,9))
+event9 = Event.create(public: true, active: true, title: "Ice cream making", description: "Make homemade ice cream", street_address: "913 Seminary St", city: "Pennsburg", state: "PA", zipcode: "18073", start: Time.new(2020,6,25,10), end: Time.new(2020,6,25,12))
 
 
 EventUser.create(user_id: user1.id, event_id: event4.id, organizer: true)
@@ -40,9 +43,13 @@ EventUser.create(user_id: user2.id, event_id: event1.id, organizer: false)
 EventUser.create(user_id: user3.id, event_id: event1.id, organizer: false)
 EventUser.create(user_id: user1.id, event_id: event3.id, organizer: false)
 EventUser.create(user_id: user2.id, event_id: event2.id, organizer: false)
-EventUser.create(user_id: user2.id, event_id: event5.id, organizer: false)
+EventUser.create(user_id: user2.id, event_id: event5.id, organizer: true)
 EventUser.create(user_id: user2.id, event_id: event6.id, organizer: true)
 EventUser.create(user_id: user4.id, event_id: event7.id, organizer: true)
+EventUser.create(user_id: user5.id, event_id: event8.id, organizer: true)
+EventUser.create(user_id: user1.id, event_id: event8.id, organizer: false)
+EventUser.create(user_id: user2.id, event_id: event8.id, organizer: false)
+EventUser.create(user_id: user3.id, event_id: event9.id, organizer: true)
 
 
 DirectMessage.create(sender_id: user1.id, receiver_id: user2.id, message: "Hey Elisheva!")
