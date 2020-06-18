@@ -1,98 +1,90 @@
-<div class="container">
-<h1 class="mt-4 text-center">Welcome <%= @user.first_name %> </h1>
+<div class="container-fluid" id="user-profile">
 
-<br>
-<div class="d-flex justify-content-between">
-<div id="events">
-    <div class="card" style="width: 20rem;">
-    <div class="card-header text-white bg-dark">
-        <h3>Your Events</h3>
-    </div>
-    
-        <% if @user.events.length > 0 %> 
-        <ul class="list-group list-group-flush">
-            <% @user.events.each do |event|%>
-            <li class="list-group-item"><%=link_to event.title, event_path(event) %></li>
-            <% end %>
-        </ul>
-        <% else  %> 
-        <div class="card-body">
-            <p class="card-text">You have no events!! </p>
-            <p class="card-text"><%=link_to "Search Events", events_path %></p>
-        </div>
-        <% end %> 
-   
-    </div>
-    <div class="text-center">
-         <%=button_to "Create Event", new_event_path,class:"btn btn-dark mt-3", :method => "get"%>
-    </div>
-    
-</div>
-<br>
-<br>
-
-<div id="messages"> 
-    
-    
-
-    <div class="card" style="width: 18rem;">
-    <div class="card-header text-white bg-dark">
-        <h3>Messages:</h3>
-    </div>
-    <div class="card-header">
-        <h5>Group Messages:</h5>
-    </div>
-        
-        <% if @user.events.length > 0 %>
-        <ul class="list-group list-group-flush">
-            <% @user.events.each do |event| %> 
-            <li class="list-group-item"><%= link_to event.title, "#{@user.id}/group_message/#{event.id}" %></li>
-            <% end %>
-        </ul>
-        <% else %>
-            <div class="card-body">
-            <p class="card-text">Add events to see messages! </p>
-            <p class="card-text"><%=link_to "Search Events", events_path %></p>
-        </div>
-        <% end %>
-      
-    </div>
-
-
+    <h1 class="mt-4 text-center">Welcome <%= @user.first_name %> </h1>
     <br>
-
-
-    <div class="card" style="width: 18rem;">
-    <div class="card-header">
-        <h5>Direct Messages:</h5>
-    </div>
-    <% if @user.people_messaged.length >0 %>
-    <ul class="list-group list-group-flush">
-            <% @user.people_messaged.each do |msg| %> 
-            <li class="list-group-item"><%= link_to msg.sender.first_name, "#{@user.id}/direct_message/#{msg.sender_id}" %> </li>
-            <% end %>
-    </ul>
-    <% else %>
-        <div class="card-body">
-            <p class="card-text">No Messages! </p>
+    <!-- Your events --> 
+    <div class="d-flex justify-content-between row" >
+        <div id="events" class="col-md6">
+                <div class="card your-events" style="width: 20rem;">
+                    <div class="card-header text-white bg-dark">
+                        <h3>Your Events</h3>
+                    </div>
+                    <% if @user.events.length > 0 %> 
+                        <ul class="list-group list-group-flush">
+                            <% @user.events.each do |event|%>
+                            <li class="list-group-item"><%=link_to event.title, event_path(event) %></li>
+                            <% end %>
+                        </ul>
+                    <% else  %> 
+                        <div class="card-body">
+                            <p class="card-text">You have no events!! </p>
+                            <p class="card-text"><%=link_to "Search Events", events_path %></p>
+                        </div>
+                    <% end %> 
+                </div>
+                <div class="text-center">
+                    <%=button_to "Create Event", new_event_path,class:"btn btn-dark mt-3", :method => "get"%>
+                </div>
         </div>
-    <% end %>
+
+
+        <br>
+        <br>
+        <!-- Messages --> 
+        <div id="messages" class="col-md6"> 
+                <div class="card" style="width: 18rem;">
+                        <div class="card-header text-white bg-dark">
+                            <h3>Messages:</h3>
+                        </div>
+                        <div class="card-header">
+                            <h5>Group Messages:</h5>
+                        </div>
+
+                    <% if @user.events.length > 0 %>
+                        <ul class="list-group list-group-flush">
+                            <% @user.events.each do |event| %> 
+                            <li class="list-group-item"><%= link_to event.title, "#{@user.id}/group_message/#{event.id}" %></li>
+                            <% end %>
+                        </ul>
+                    <% else %>
+                        <div class="card-body">
+                            <p class="card-text">Add events to see messages! </p>
+                            <p class="card-text"><%=link_to "Search Events", events_path %></p>
+                        </div>
+                    <% end %>
+                </div>
+
+
+                <br>
+                <!-- Direct Messages -->
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        <h5>Direct Messages:</h5>
+                    </div>
+                    <% if @user.people_messaged.length >0 %>
+                        <ul class="list-group list-group-flush">
+                                <% @user.people_messaged.each do |msg| %> 
+                                    <li class="list-group-item"><%= link_to msg.sender.first_name, "#{@user.id}/direct_message/#{msg.sender_id}" %> </li>
+                                <% end %>
+                        </ul>
+                    <% else %>
+                        <div class="card-body">
+                            <p class="card-text">No Messages! </p>
+                        </div>
+                    <% end %>
+                </div>
+        </div>
     </div>
-</div>
-</div>
 
-
-
-
-    <!--    --> 
+    <!-- Popular Events   --> 
     <div class="d-flex justify-content-between">
         <div class="card" style="width: 20rem;">
             <div class="card-header text-white bg-dark">
                 <h3>Popular Events</h3>
             </div>
-                <% if @popular_events.length > 0 %> 
+                <% if @user.events.length > 0 %> 
                 <ul class="list-group list-group-flush">
-                    <% @popular_events.each do |event|%>
+                    <% @user.events.each do |event|%>
                     <li class="list-group-item"><%=link_to event.title, event_path(event) %></li>
                     <% end %>
                 </ul>
@@ -104,5 +96,4 @@
                 <% end %> 
         </div>
     </div>
-
 </div>
