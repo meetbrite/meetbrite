@@ -36,7 +36,12 @@
         </div>
         <ul class="list-group list-group-flush">
             <% @members.each do |member| %>
-                <li class="list-group-item"><a href="/users/<%=@user.id%>/direct_message/<%=member.id %>"><%= member.first_name%> <%=member.last_name %> </a></li>
+                <li class="list-group-item d-flex justify-content-between"><a href="/users/<%=@user.id%>/direct_message/<%=member.id %>"><%= member.first_name%> <%=member.last_name %> </a>
+                <% if @organizer && member != @user %>
+                     <span class="ml-3"><%= button_to "Remove", "/events/#{@event.id}/organizer/#{member.id}/remove_member", :method => "get", class: "btn btn-outline-danger"%></span>
+                <% end %>
+                </li>
+
             <% end %>
         </ul>
 
