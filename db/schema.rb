@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_06_12_194827) do
     t.string "zipcode"
     t.float "latitude"
     t.float "longitude"
+    t.integer "users_count"
     t.datetime "start"
     t.datetime "end"
     t.datetime "created_at", precision: 6, null: false

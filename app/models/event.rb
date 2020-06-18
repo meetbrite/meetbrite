@@ -49,13 +49,7 @@ class Event < ApplicationRecord
 
     #return popular events (top 4 events with highest attendees)
     def self.popular 
-        Event
-            .joins(:users)
-            .select("users.*, count(users.id) as scount")
-            .group("users.id")
-            .order("count DESC")
-
-            # byebug 
+        Event.order("users_count DESC").limit(4)    
     end 
 
     # custom validations

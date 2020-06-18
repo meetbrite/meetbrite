@@ -13,6 +13,7 @@ class CreateEvents < ActiveRecord::Migration[6.0]
       t.string :zipcode
       t.float :latitude 
       t.float :longitude 
+      t.integer :users_count 
       t.datetime :start
       t.datetime :end
 
