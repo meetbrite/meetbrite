@@ -19,6 +19,10 @@ puts "Seeding database..."
 
 user1 = User.create(first_name: "Bashir", last_name: "Alhanshali", email: "bashiralhanshali@yahoo.com", password: "hello", password_confirmation: "hello")
 user2 = User.create(first_name: "Elisheva", last_name: "Elbaz", email: "elisheva@elbaz.com", password: "hello", password_confirmation: "hello")
+user3 = User.create(first_name: "Bob", last_name: "Smith", email: "bob@smith.com", password: "hello", password_confirmation: "hello")
+user4 = User.create(first_name: "Anita", last_name: "Gold", email: "anita@gold.com", password: "hello", password_confirmation: "hello")
+
+
 
 
 event1 = Event.create(public: true, active: true, title: "Ice cream party", description: "This is an excellent event if you like sweets", location_name: "Melt Bakery", street_address: "111 Front St", city: "Brooklyn", state: "NY", zipcode: "11201", start: Time.new(2020,6,27,9), end: Time.new(2020,6,27,16))
@@ -27,24 +31,30 @@ event3 = Event.create(public: true, active: true, title: "Music Party 101", desc
 event4 = Event.create(public: false, active: true, title: "Block Party", description: "Let the neighbors get to know each other", street_address: "Campbell Avenue", city: "Edison", state: "NJ", zipcode: "08817", start: Time.new(2020,7,04,11), end: Time.new(2020,7,04,16))
 event5 = Event.create(public: false, active: true, title: "Flatiron Mixer", description: "Let the students get to know each other", location_name: "Flatiron School", street_address: "81 Prospect St", city: "Brooklyn", state: "NY", zipcode: "11201", start: Time.new(2020,7,10,12), end: Time.new(2020,6,10,13))
 event6 = Event.create(public: true, active: true, title: "Coding Tournament", description: "This is a coding tournament for bootcamp grads", location_name: "Flatiron School", street_address: "81 Prospect St", city: "Brooklyn", state: "NY", zipcode: "11201", start: Time.new(2020,7,27,9), end: Time.new(2020,7,27,16))
+event7 = Event.create(public: true, active: true, title: "Car Show", description: "Come and see our newest cars ", location_name: "Edison Auto Sales", street_address: "195 US-1", city: "Edison", state: "NJ", zipcode: "08817", start: Time.new(2020,7,01,9), end: Time.new(2020,7,01,18))
 
 
 EventUser.create(user_id: user1.id, event_id: event4.id, organizer: true)
-EventUser.create(user_id: user1.id, event_id: event1.id, organizer: false)
+EventUser.create(user_id: user1.id, event_id: event1.id, organizer: true)
+EventUser.create(user_id: user2.id, event_id: event1.id, organizer: false)
+EventUser.create(user_id: user3.id, event_id: event1.id, organizer: false)
 EventUser.create(user_id: user1.id, event_id: event3.id, organizer: false)
 EventUser.create(user_id: user2.id, event_id: event2.id, organizer: false)
 EventUser.create(user_id: user2.id, event_id: event5.id, organizer: false)
 EventUser.create(user_id: user2.id, event_id: event6.id, organizer: true)
+EventUser.create(user_id: user4.id, event_id: event7.id, organizer: true)
 
-DirectMessage.create(sender_id: user1.id, receiver_id: user2.id, message: "Hey Elisheva! From Bashir")
-DirectMessage.create(sender_id: user1.id, receiver_id: user2.id, message: "Hey Elisheva! Second Message From Bashir!")
-DirectMessage.create(sender_id: user2.id, receiver_id: user1.id, message: "Hey Bashir! From Elisheva")
-DirectMessage.create(sender_id: user2.id, receiver_id: user1.id, message: "Hey Bashir! Second Message From Elisheva!")
 
-GroupMessage.create(event_id: event1.id, user_id: user1.id, message: "Hello From Bashir to event with id #{event1.id}" )
-GroupMessage.create(event_id: event1.id, user_id: user2.id, message: "Hello From Elisheva to event with id #{event1.id}" )
-GroupMessage.create(event_id: event2.id, user_id: user1.id, message: "Hello From Bashir to event with id #{event2.id}" )
-GroupMessage.create(event_id: event2.id, user_id: user2.id, message: "Hello From Elisheva to event with id #{event2.id}" )
+DirectMessage.create(sender_id: user1.id, receiver_id: user2.id, message: "Hey Elisheva!")
+DirectMessage.create(sender_id: user2.id, receiver_id: user1.id, message: "Hey Bashir!")
+DirectMessage.create(sender_id: user2.id, receiver_id: user1.id, message: "How's the project coming along?")
+DirectMessage.create(sender_id: user1.id, receiver_id: user2.id, message: "Great! You should check it out!")
+
+GroupMessage.create(event_id: event1.id, user_id: user1.id, message: "Hey everyone! What's your favorite ice cream flavor 🍦?" )
+GroupMessage.create(event_id: event1.id, user_id: user3.id, message: "Chocolate! 🍫" )
+GroupMessage.create(event_id: event1.id, user_id: user2.id, message: "Cookie Dough! 🍪" )
+GroupMessage.create(event_id: event2.id, user_id: user1.id, message: "Can't wait for this event" )
+GroupMessage.create(event_id: event2.id, user_id: user2.id, message: "Yeah I love pair programming" )
 
 puts "Seed Completed!"
 
