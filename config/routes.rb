@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get "/events/:event_id/unregister", to: "events#unregister", as: 'event_unregister_user'
   #get "/events/:user_id/organizer", to: "events#organizer", as: 'organizer'
   post "/events/:event_id/organizer/add_member", to: "events#add_member", as: 'add_member'
+  get "/events/:event_id/organizer/:member_id/remove_member", to: "events#remove_member", as: 'remove_member'
+
 
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'

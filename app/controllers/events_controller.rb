@@ -106,11 +106,21 @@ class EventsController < ApplicationController
                 redirect_back(fallback_location: user_path(session[:user_id]))
             else 
                 flash[:error] = "User already joined!"
+                redirect_back(fallback_location: user_path(session[:user_id]))
             end 
         else 
             flash[:error] = "User doesn't exist "
             redirect_back(fallback_location: user_path(session[:user_id]))
         end 
+    end
+
+    def remove_member 
+
+        event_user = EventUser.find_by(user_id: params[:member_id], event_id: params[:event_id])
+        event_user.destroy
+       
+        redirect_back(fallback_location: event_path(params[:event_id]))
+    
     end
 
     private
