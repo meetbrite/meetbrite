@@ -23,8 +23,8 @@ Meetbrite is an event managment application with important features that are ove
 5. ActionCable/ WebSockets 
 
 **Front-end**
-2. Ruby views
-1. HTML
-2. CSS
-3. Bootstrap 
-3. JS (for map display and messaging functionality only)
+1. Ruby views
+2. HTML
+3. CSS
+4. Bootstrap 
+5. JS (for map display and messaging functionality only)
