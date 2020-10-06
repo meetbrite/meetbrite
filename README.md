@@ -20,6 +20,7 @@ Meetbrite is an event managment application with important features that are ove
 2. ActiveRecord 
 3. Bcrypt for user authentication 
 4. Sessions/cookies for user persistence  
+5. ActionCable/ WebSockets 
 
 **Front-end**
 2. Ruby views
