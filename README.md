@@ -1,24 +1,29 @@
-# README
+# Meetbrite
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> Event managment application with attendee messaging 
 
-Things you may want to cover:
 
-* Ruby version
 
-* System dependencies
+[![Welcome To Meetbrite](./assets/welcome.png)]()
 
-* Configuration
+Meetbrite is an event managment application with important features that are overlooked by other similar apps in the market.  Meetbrite allows the users to search and find nearby events, sign up for events, or create their own events that can either be public or private.  A user has the ability to communicate in real-time with other attendees through the event's group messagin page.  Users have the ability to also send private direct messages to individual users through the direct-messaging feature.   
 
-* Database creation
 
-* Database initialization
+## Demo
 
-* How to run the test suite
+![Recordit GIF](./assets/demo.gif)
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## Tech Stack 
+**Backend**
+1. Ruby on Rails 
+2. ActiveRecord 
+3. Bcrypt for user authentication 
+4. Sessions/cookies for user persistence  
 
-* ...
+**Front-end**
+2. Ruby views
+1. HTML
+2. CSS
+3. Bootstrap 
+3. JS (for map display and messaging functionality only)
