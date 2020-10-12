@@ -1,5 +1,5 @@
 <div class="container mt-3" >    
-    <h1 class="text-center">Login</h1>
+    <h1 class="text-center">Log In</h1>
 
     <p class="text-center mt-3" style="color:red"> <%= flash[:alert] %> </p>
     <%= form_for(:session, url: "/sessions") do |f| %>
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <%= f.submit "Login", :class => "btn btn-primary" %>
+            <%= f.submit "Log in", :class => "btn btn-primary" %>
         </div>
     <% end %>
     <br>
