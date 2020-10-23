@@ -45,5 +45,4 @@ Run `rails db:migrate` to create the database and the migrations.
 Run `rails db:seed` to seed the database.  
 Run `rails s` to start the rails server (it will run on on PORT 3000). 
 
-In another terminal window, run `redis-server`.  
 Open [localhost:3000](http://localhost:3000) in your browser.
